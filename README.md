@@ -1,4 +1,4 @@
-piseis
+&#120587;seis
 ======
 
-PiSeis = People Says, what people around the world is saying about something... you've got it.
+&#120587;Seis: People Says, what people around the world is saying about something... you've got it.
