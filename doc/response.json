@@ -1,0 +1,49 @@
+{
+    "data": {
+        "warnings": [
+            {
+                "network": {
+                    "name": "Facebook",
+                    "statusCode": 402,
+                    "message": "User must be logged."
+                }
+            }
+        ],
+        "result": [
+            {
+                "type": 1,
+                "author": {
+                    "username": "justkenchu",
+                    "name": "Nahuel Barrios",
+                    "profile": "https://plus.google.com/+NahuelBarrios/"
+                },
+                "preview": {
+                    "thumbnail": "public URL to an image",
+                    "snippet": "short text, it's limit is 140 characters."
+                },
+                "data": {
+                    "content": "this is a tweet! The entire text of the tweet",
+                    "media": {
+                        "image": {
+                            "small": "public URL to a small size image",
+                            "medium": "public URL to a medium size image",
+                            "large": "public URL to a large size image"
+                        },
+                        "video": {
+                            "low": "public URL to a low quality video",
+                            "medium": "public URL to a medium quality video",
+                            "high": "public URL to a high quality video (HD!!)"
+                        }
+                    }
+                },
+                "network": {
+                    "name": "Facebook | Twitter | Youtube | Flickr | Instagram | Vimeo | Google+"
+                }
+            }
+        ]
+    },
+    "error": {
+        "statusCode": 404,
+        "message": "an error message"
+    }
+}
