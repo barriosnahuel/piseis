@@ -2,20 +2,23 @@
     "data": [
         {
             "author": {
-                "username": "justkenchu",
-                "name": "Nahuel Barrios",
-                "profile": "https://plus.google.com/+NahuelBarrios/"
+                "username": "justkenchu (Instagram)",
+                "name": "Nahuel Barrios (Instagram)",
+                "profile": {
+                    "url": "https://plus.google.com/+NahuelBarrios/ (Instagram)",
+                    "picture": "public URL to a profile picture (Instagram)"
+                }
             },
             "preview": {
-                "thumbnail": "public URL to an image",
+                "thumbnail": "public URL to an image (Instagram)",
                 "snippet": "short text, it's limit is 140 characters."
             },
-            "status": {
-                "content": "this is a tweet! The entire text of the tweet",
+            "data": {
+                "content": "this is a tweet! The entire text of the tweet (Instagram)",
                 "media": {
                     "image": {
-                        "small": "public URL to a small size image",
-                        "medium": "public URL to a medium size image",
+                        "small": "public URL to a small size image (Instagram)",
+                        "medium": "public URL to a medium size image (Instagram)",
                         "large": "public URL to a large size image"
                     },
                     "video": {
@@ -25,6 +28,10 @@
                     }
                 }
             },
+            "date": "the date!! (Instagram)",
+            "link": "URL to this tweet! (Instagram)",
+            "location": "attached location (Instagram)",
+            "tags": "linked tags (Instagram)",
             "source": "Facebook | Twitter | Youtube | Flickr | Instagram | Vimeo | Google+ | Flickr"
         }
     ],
