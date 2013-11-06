@@ -2,11 +2,11 @@
     "data": [
         {
             "author": {
-                "username": "justkenchu (Instagram)",
-                "name": "Nahuel Barrios (Instagram)",
+                "username": "justkenchu (Instagram, Twitter)",
+                "name": "Nahuel Barrios (Instagram, Twitter)",
                 "profile": {
-                    "url": "https://plus.google.com/+NahuelBarrios/ (Instagram)",
-                    "picture": "public URL to a profile picture (Instagram)"
+                    "url": "https://plus.google.com/+NahuelBarrios/ (Instagram, Twitter)",
+                    "picture": "public URL to a profile picture (Instagram, Twitter)"
                 }
             },
             "preview": {
@@ -14,11 +14,11 @@
                 "snippet": "short text, it's limit is 140 characters."
             },
             "data": {
-                "content": "this is a tweet! The entire text of the tweet (Instagram)",
+                "content": "this is a tweet! The entire text of the tweet (Instagram, Twitter)",
                 "media": {
                     "image": {
                         "small": "public URL to a small size image (Instagram)",
-                        "medium": "public URL to a medium size image (Instagram)",
+                        "medium": "public URL to a medium size image (Instagram, Twitter)",
                         "large": "public URL to a large size image"
                     },
                     "video": {
@@ -28,10 +28,10 @@
                     }
                 }
             },
-            "date": "the date!! (Instagram)",
+            "date": "the date!! (Instagram, Twitter)",
             "link": "URL to this tweet! (Instagram)",
-            "location": "attached location (Instagram)",
-            "tags": "linked tags (Instagram)",
+            "location": "attached location (Instagram, Twitter)",
+            "tags": "linked tags (Instagram, Twitter)",
             "source": "Facebook | Twitter | Youtube | Flickr | Instagram | Vimeo | Google+ | Flickr"
         }
     ],
