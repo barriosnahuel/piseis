@@ -3,15 +3,12 @@
  * Created on 11/5/13, at 12:49 AM.
  */
 
-piseis.find({
-                query: "something cool",
-                excludeNetworks: {
-                    facebook: true,
-                    vimeo: true
-                },
-                callback: function (response) {
-                    //  Do something here with everything we've found for you1
-                }
-            });
+org.nbempire.js.piseis.find({
+                                query: "something cool",
+                                excludeNetworks: ['Facebook', 'Vimeo']
+                            });
 
-$.piseis(...);
+$.piseis({
+             query: "something cool",
+             excludeNetworks: ['Facebook', 'Vimeo']
+         });
