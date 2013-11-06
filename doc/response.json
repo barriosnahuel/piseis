@@ -3,33 +3,33 @@
         {
             "author": {
                 "username": "justkenchu (Instagram, Twitter)",
-                "name": "Nahuel Barrios (Instagram, Twitter)",
+                "name": "Nahuel Barrios (Instagram, Twitter, Google+)",
                 "profile": {
-                    "url": "https://plus.google.com/+NahuelBarrios/ (Instagram, Twitter)",
-                    "picture": "public URL to a profile picture (Instagram, Twitter)"
+                    "url": "https://plus.google.com/+NahuelBarrios/ (Instagram, Twitter, Google+)",
+                    "picture": "public URL to a profile picture (Instagram, Twitter, Google+)"
                 }
             },
             "preview": {
                 "thumbnail": "public URL to an image (Instagram)",
-                "snippet": "short text, it's limit is 140 characters."
+                "snippet": "short text, it's limit is 140 characters. (Google+)"
             },
             "data": {
-                "content": "this is a tweet! The entire text of the tweet (Instagram, Twitter)",
+                "content": "this is a tweet! The entire text of the tweet (Instagram, Twitter, Google+)",
                 "media": {
                     "image": {
                         "small": "public URL to a small size image (Instagram)",
-                        "medium": "public URL to a medium size image (Instagram, Twitter)",
+                        "medium": "public URL to a medium size image (Instagram, Twitter, Google+)",
                         "large": "public URL to a large size image"
                     },
                     "video": {
                         "low": "public URL to a low quality video",
-                        "medium": "public URL to a medium quality video",
+                        "medium": "public URL to a medium quality video (Google+)",
                         "high": "public URL to a high quality video (HD!!)"
                     }
                 }
             },
-            "date": "the date!! (Instagram, Twitter)",
-            "link": "URL to this tweet! (Instagram)",
+            "date": "the date!! (Instagram, Twitter, Google+)",
+            "link": "URL to this tweet! (Instagram, Google+)",
             "location": "attached location (Instagram, Twitter)",
             "tags": "linked tags (Instagram, Twitter)",
             "source": "Facebook | Twitter | Youtube | Flickr | Instagram | Vimeo | Google+ | Flickr"
