@@ -18,22 +18,17 @@
 
 /**
  * Created by Nahuel Barrios <barrios.nahuel@gmail.com>.
- * Created on 11/5/13, at 11:34 PM.
+ * Created on 11/6/13, at 12:07 AM.
  */
+$(document).ready(function () {
 
-var org = org || {};
-org.nbempire = org.nbempire || {};
-org.nbempire.js = org.nbempire.js || {};
+    $('form').submit(function (event) {
+        event.preventDefault();
 
-org.nbempire.js.piseis = (function () {
+        var keyword = $('#keyword').val();
+        $('body').piseis({
+                             query: keyword === '' ? undefined : keyword
+                         });
+    });
 
-    var find = function (options) {
-        console.log('start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
-    };
-
-    return {
-        find: find
-    };
-
-}());
-
+});
