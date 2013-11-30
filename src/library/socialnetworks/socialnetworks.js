@@ -18,40 +18,11 @@
 
 /**
  * Created by Nahuel Barrios <barrios.nahuel@gmail.com>.
- * Created on 11/5/13, at 11:34 PM.
+ * Created on 11/30/13, at 3:15 PM.
  */
-
 var org = org || {};
 org.nbempire = org.nbempire || {};
 org.nbempire.js = org.nbempire.js || {};
+org.nbempire.js.piseis = org.nbempire.js.piseis || {};
 
-org.nbempire.js.piseis = (function () {
-
-    var find = function (options) {
-        console.log('start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
-
-        if (options.excludeNetworks.indexOf('Flickr') < 0) {
-            //  TODO : Functionality : find in Flickr
-            org.nbempire.js.piseis.socialnetworks.flickr.find(options.query, function (data) {
-                console.log('success!!');
-                console.dir(data);
-            });
-        }
-
-        //  TODO : Functionality : find in Instagram
-
-        //  TODO : Functionality : find in Google+
-
-        //  TODO : Functionality : find in Twitter
-
-        //  TODO : Functionality : find in Facebook
-
-        //  TODO : Functionality : sort results by date
-    };
-
-    return {
-        find: find
-    };
-
-}());
-
+org.nbempire.js.piseis.socialnetworks = {};
