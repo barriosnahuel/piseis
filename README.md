@@ -1,10 +1,13 @@
-&#120587;seis
-======
+#&#120587;seis
 
-&#120587;Seis: People Says, what people around the world is saying about something... you've got it.
+&#120587;Seis: People Says, *what people around the world is saying about something... you've got it.*
 
-License
-======
+##Issues
+
+[![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis)
+
+##License
+
     PiSeis - What people around the world is saying, you've got it.
     Copyright (C) 2013 Nahuel Barrios <barrios.nahuel@gmail.com>.
 
