@@ -23,7 +23,7 @@
 
 (function ($) {
 
-    $.fn.piseis = function (options) {
+    $.fn.piseis = function (onError, onSuccess, options) {
 
         //  This is the easiest way to have default options.
         var settings = $.extend({
@@ -32,7 +32,7 @@
                                     excludeNetworks: ['Facebook']
                                 }, options);
 
-        org.nbempire.js.piseis.find(settings);
+        org.nbempire.js.piseis.find(onError, onSuccess, settings);
 
         return this;
     };

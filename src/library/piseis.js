@@ -27,22 +27,23 @@ org.nbempire.js = org.nbempire.js || {};
 
 org.nbempire.js.piseis = (function () {
 
-    var find = function (options) {
+    var find = function (onError, onSuccess, options) {
         console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
 
-        var onError = function (data, textStatus, jqXHR) {
+        var onFlickrError = function (data, textStatus, jqXHR) {
             console.log("An error occured while parsing %s: ", "Flickr", textStatus);
+
+            onError(data, textStatus, jqXHR);
         };
 
         var onFlickrSuccess = function (data) {
             console.log("Flickr results found.");
 
-            console.log("Parsed response:");
-            console.dir(data);
+            onSuccess(data);
         };
 
         if (options.excludeNetworks.indexOf('Flickr') < 0) {
-            org.nbempire.js.piseis.socialnetworks.flickr.find(onError, onFlickrSuccess, options.query);
+            org.nbempire.js.piseis.socialnetworks.flickr.find(onFlickrError, onFlickrSuccess, options.query);
         }
 
         //  TODO : Functionality : find in Instagram

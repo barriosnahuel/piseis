@@ -23,10 +23,20 @@
 $(document).ready(function () {
 
     $('form').submit(function (event) {
+        var onError = function () {
+            console.error("An error occurred while searching in social networks...");
+        };
+
+        var onSuccess = function (data) {
+            console.log("Response parsed. Results: %d", data.data.length);
+            console.dir(data.data[0]);
+        };
+
+        //  ========================================== STOP DECLARING FUNCTIONS
         event.preventDefault();
 
         var keyword = $('#keyword').val();
-        $('body').piseis({
+        $('body').piseis(onError, onSuccess, {
             query: keyword === '' ? undefined : keyword
         });
     });
