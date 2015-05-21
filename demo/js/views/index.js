@@ -27,8 +27,8 @@ $(document).ready(function () {
 
         var keyword = $('#keyword').val();
         $('body').piseis({
-                             query: keyword === '' ? undefined : keyword
-                         });
+            query: keyword === '' ? undefined : keyword
+        });
     });
 
 });
