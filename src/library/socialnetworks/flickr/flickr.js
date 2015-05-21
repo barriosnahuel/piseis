@@ -38,9 +38,41 @@ org.nbempire.js.piseis.socialnetworks.flickr = (function () {
         }
 
         var parseResponse = function (data, textStatus, jqXHR) {
-            var response = {};
+            console.log("Response to parse:");
+            console.dir(data.items);
 
-            response.test = data;
+            var response = {};
+            response.data = [];
+
+            var parsePublication = function (item) {
+                var result = {};
+
+                var author = {};
+                author.username = item.author;
+                author.id = item.author_id;
+                result.author = author;
+
+                var preview = {};
+                preview.snippet = item.description;
+                result.preview = preview;
+
+                var data = {};
+                data.media = {
+                    image: {
+                        medium: item.media.m
+                    }
+                };
+                result.data = data;
+
+                result.date = item.published;
+                result.link = item.link;
+
+                return result;
+            };
+
+            for (var i = 0; i < data.items.length; i++) {
+                response.data.push(parsePublication(data.items[i]));
+            }
 
             onSuccess(response);
         };
