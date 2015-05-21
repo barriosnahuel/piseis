@@ -4,10 +4,18 @@
             "author": {
                 "username": "justkenchu (Instagram, Twitter, Flickr)",
                 "name": "Nahuel Barrios (Instagram, Twitter, Google+)",
+                "id": "1241251hasofhaoifho1241",
                 "profile": {
                     "url": "https://plus.google.com/+NahuelBarrios/ (Instagram, Twitter, Google+, Flickr)",
                     "picture": "public URL to a profile picture (Instagram, Twitter, Google+)"
-                }
+                },
+                "stats": {
+                    "tweets": 421,
+                    "followers": 123,
+                    "following": 312,
+                    "friends": 412
+                },
+                "description": "Some silly description about myself"
             },
             "preview": {
                 "thumbnail": "public URL to an image (Instagram)",
@@ -25,13 +33,26 @@
                         "low": "public URL to a low quality video",
                         "medium": "public URL to a medium quality video (Google+)",
                         "high": "public URL to a high quality video (HD!!)"
+                    },
+                    "stream": {
+                        "url": "public URL to a livestream event (Twitter)"
+                    },
+                    "audio": {
+                        "low": "public URL to a low quality audio",
+                        "medium": "public URL to a medium quality audio",
+                        "hight": "public URL to a high quality audio"
                     }
                 }
             },
-            "date": "the date!! (Instagram, Twitter, Google+, Flickr)",
+            "date": "the date that it was pulished!! (Instagram, Twitter, Google+, Flickr)",
             "link": "URL to this tweet! (Instagram, Google+, Flickr)",
             "location": "attached location (Instagram, Twitter)",
-            "tags": "linked tags (Instagram, Twitter, Flickr)",
+            "tags": [
+                "music",
+                "fan",
+                "queen",
+                "(Twitter, Instagram, Facebook, Flickr)"
+            ],
             "source": "Facebook | Twitter | Youtube | Flickr | Instagram | Vimeo | Google+ | Flickr"
         }
     ],
