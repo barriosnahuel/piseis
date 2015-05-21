@@ -6,6 +6,13 @@
 
 [![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis)
 
+##Repo usage
+*Do not clone or push to* **master** *branch.*
+
+Create branch or fork from **develop**, then push or create pull requests (if you don't have access) to that branch.
+
+The repo uses [this branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+
 ##License
 
     PiSeis - What people around the world is saying, you've got it.
