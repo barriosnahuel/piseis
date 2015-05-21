@@ -29,7 +29,7 @@ org.nbempire.js.piseis.socialnetworks = org.nbempire.js.piseis.socialnetworks ||
 
 org.nbempire.js.piseis.socialnetworks.flickr = (function () {
 
-    var findNews = function (keywords, onSuccess) {
+    var findNews = function (onError, onSuccess, keywords) {
         var url = 'http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
 
         var tags = "", index;
@@ -37,9 +37,17 @@ org.nbempire.js.piseis.socialnetworks.flickr = (function () {
             tags.concat(keywords[index]).concat(',');
         }
 
-        //  TODO : Functionality : transform this into a jquery promise!!
+        var parseResponse = function (data, textStatus, jqXHR) {
+            var response = {};
 
-        $.getJSON(url, {tags: tags, tagmode: 'any', format: 'json'}, onSuccess);
+            response.test = data;
+
+            onSuccess(response);
+        };
+
+        $.getJSON(url, {tags: tags, tagmode: 'any', format: 'json'})
+            .fail(onError)
+            .done(parseResponse);
     };
 
     return {

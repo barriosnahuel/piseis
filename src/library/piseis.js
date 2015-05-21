@@ -28,14 +28,21 @@ org.nbempire.js = org.nbempire.js || {};
 org.nbempire.js.piseis = (function () {
 
     var find = function (options) {
-        console.log('start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
+        console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
+
+        var onError = function (data, textStatus, jqXHR) {
+            console.log("An error occured while parsing %s: ", "Flickr", textStatus);
+        };
+
+        var onFlickrSuccess = function (data) {
+            console.log("Flickr results found.");
+
+            console.log("Parsed response:");
+            console.dir(data);
+        };
 
         if (options.excludeNetworks.indexOf('Flickr') < 0) {
-            //  TODO : Functionality : find in Flickr
-            org.nbempire.js.piseis.socialnetworks.flickr.find(options.query, function (data) {
-                console.log('success!!');
-                console.dir(data);
-            });
+            org.nbempire.js.piseis.socialnetworks.flickr.find(onError, onFlickrSuccess, options.query);
         }
 
         //  TODO : Functionality : find in Instagram
