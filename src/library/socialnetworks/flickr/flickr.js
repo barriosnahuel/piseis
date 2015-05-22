@@ -45,10 +45,15 @@ org.nbempire.js.piseis.socialnetworks.flickr = (function () {
             response.data = [];
 
             var parsePublication = function (item) {
+                function getUserNameFromAuthor(author) {
+                    return author.substring(author.indexOf('(') + 1, author.indexOf(')'));
+                }
+
                 var result = {};
 
                 var author = {};
-                author.username = item.author;
+
+                author.username = getUserNameFromAuthor(item.author);
                 author.id = item.author_id;
                 result.author = author;
 
