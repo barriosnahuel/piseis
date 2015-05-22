@@ -6,13 +6,22 @@ module.exports = function (grunt) {
 
         jshint: {
             all: ['Gruntfile.js', 'routes/**/*.js']
+        },
+
+        nodeunit: {
+            all: ['test/**/*_test.js'],
+            options: {
+                reporter: 'verbose',
+                reporterOptions: {
+                    output: 'build/tests'
+                }
+            }
         }
     });
 
-    // Load the plugin that provides the "jshint" task.
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    // Default task(s).
-    grunt.registerTask('default', ['jshint']);
-
+    // Create my own tasks.
+    grunt.registerTask('check', ['jshint', 'nodeunit']);
 };

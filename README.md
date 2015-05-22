@@ -21,9 +21,18 @@ The repo uses [this branching model](http://nvie.com/posts/a-successful-git-bran
 
 ###Run checks
 
+####Tests
+
+> grunt nodeunit
+
 ####JSHint
 
 > grunt jshint
+
+###PRO tips!
+
+- To run all checks at once simply  run:
+	> grunt check
 
 ##jQuery plugin
 
