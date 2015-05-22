@@ -17,7 +17,13 @@ The repo uses [this branching model](http://nvie.com/posts/a-successful-git-bran
 
 ###Start
 
-    npm start
+> npm start
+
+###Run checks
+
+####JSHint
+
+> grunt jshint
 
 ##jQuery plugin
 
