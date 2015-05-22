@@ -13,6 +13,16 @@ Create branch or fork from **develop**, then push or create pull requests (if yo
 
 The repo uses [this branching model](http://nvie.com/posts/a-successful-git-branching-model/).
 
+##Server
+
+###Start
+
+    npm start
+
+##jQuery plugin
+
+    // TODO
+
 ##License
 
     PiSeis - What people around the world is saying, you've got it.
