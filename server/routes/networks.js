@@ -5,16 +5,22 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET networks listing. */
+// ======================
+// Self modules
+// ======================
+
+/**
+ * It's the networks service.
+ * @type {exports|module.exports}
+ */
+var service = require('../services/networks_service');
+
+// ======================
+// Mappings...
+// ======================
+
 router.get('/', function (req, res, next) {
-    res.send([
-        {
-            id: 'flickr',
-            name: 'Flickr',
-            url: 'https://www.flickr.com/',
-            logo_url: 'https://s.yimg.com/pw/images/goodies/white-small-circle.png'
-        }
-    ]);
+    res.send(service.findAll());
 });
 
 module.exports = router;
