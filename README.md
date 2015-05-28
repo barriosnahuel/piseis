@@ -4,7 +4,7 @@
 
 ##Issues
 
-[![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis)
+[![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis) [![Build Status](https://travis-ci.org/barriosnahuel/piseis.png)](https://travis-ci.org/barriosnahuel/piseis)
 
 ##Repo usage
 *Do not clone or push to* **master** *branch.*
