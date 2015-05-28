@@ -25,8 +25,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>&#120587;Seis demo</title>
 
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,19 +37,37 @@
     <![endif]-->
 </head>
 <body>
-<h1>&#120587;Seis demo</h1>
 
-<div id="container">
-    <form>
-        <input type="text" id="keyword" placeholder="Enter your keyword here" autofocus>
-        <input type="submit">
-    </form>
+<div id="container" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>&#120587;Seis demo</h1>
+            <hr>
+        </div>
+    </div>
 
-    <hr>
-    <h2>Results</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="piseis-search-box">
+                <h2>Search</h2>
 
-    <ul id="results">
-    </ul>
+                <form>
+                    <input type="text" id="keyword" placeholder="Enter your keyword here" autofocus>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="piseis-results-box">
+                <h2>Results</h2>
+
+                <ul id="results">
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Libraries -->

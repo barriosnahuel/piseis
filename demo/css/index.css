@@ -1,0 +1,8 @@
+.container {
+    background-color: #AEBDCC;
+    border-radius: 10px;
+}
+
+.piseis-search-box, .piseis-results-box {
+    padding: 5px;
+}
