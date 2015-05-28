@@ -12,3 +12,7 @@ before_script:
   - cd server/
   - npm install
   - npm start &
+
+notifications:
+    on_success: change
+    on_failure: change
