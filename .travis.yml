@@ -7,10 +7,6 @@ node_js:
   - "iojs"
   - "iojs-v1.0.4"
 
-"scripts": {
-  "test": "grunt nodeunit"
-}
-
 before_script:
   - cd server/
   - npm start
