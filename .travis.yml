@@ -9,4 +9,4 @@ node_js:
 before_script:
   - cd server/
   - npm install
-  - npm start
+  - npm start &
