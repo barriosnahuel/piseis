@@ -27,10 +27,10 @@
 
         //  This is the easiest way to have default options.
         var settings = $.extend({
-                                    //  These are the defaults.
-                                    query: 'NBA',
-                                    excludeNetworks: ['Facebook']
-                                }, options);
+            //  These are the defaults.
+            query: 'NBA',
+            excludeNetworks: ['Facebook', 'Google+']
+        }, options);
 
         org.nbempire.js.piseis.find(onError, onSuccess, settings);
 

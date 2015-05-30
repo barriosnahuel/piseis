@@ -30,31 +30,7 @@ org.nbempire.js.piseis = (function () {
     var find = function (onError, onSuccess, options) {
         console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
 
-        var onFlickrError = function (data, textStatus, jqXHR) {
-            console.log("An error occured while parsing %s: ", "Flickr", textStatus);
-
-            onError(data, textStatus, jqXHR);
-        };
-
-        var onFlickrSuccess = function (data) {
-            console.log("Flickr results found.");
-
-            onSuccess(data);
-        };
-
-        if (options.excludeNetworks.indexOf('Flickr') < 0) {
-            org.nbempire.js.piseis.socialnetworks.flickr.find(onFlickrError, onFlickrSuccess, options.query);
-        }
-
-        //  TODO : Functionality : find in Instagram
-
-        //  TODO : Functionality : find in Google+
-
-        //  TODO : Functionality : find in Twitter
-
-        //  TODO : Functionality : find in Facebook
-
-        //  TODO : Functionality : sort results by date
+        org.nbempire.js.piseis.socialnetworks.findNews(onError, onSuccess, options);
     };
 
     return {

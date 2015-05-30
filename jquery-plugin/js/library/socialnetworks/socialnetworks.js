@@ -25,4 +25,26 @@ org.nbempire = org.nbempire || {};
 org.nbempire.js = org.nbempire.js || {};
 org.nbempire.js.piseis = org.nbempire.js.piseis || {};
 
-org.nbempire.js.piseis.socialnetworks = {};
+org.nbempire.js.piseis.socialnetworks = (function () {
+
+    // TODO : Move this!!
+    var API_ENDPOINT = 'http://localhost:3000';
+
+    var findNews = function (onError, onSuccess, options) {
+
+        $.ajax({
+            dataType: "jsonp",
+            url: API_ENDPOINT + '/news',
+            data: {
+                q: options.query
+                , excludedNetworks: options.excludeNetworks.join(',')
+            }
+        }).fail(onError)
+            .done(onSuccess);
+    };
+
+    return {
+        findNews: findNews
+    }
+}());
+
