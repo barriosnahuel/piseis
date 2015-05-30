@@ -21,11 +21,11 @@ var service = require('../services/news_service');
 
 router.get('/', function (req, res, next) {
     var onError = function (statusCode, message) {
-        res.send(statusCode, message);
+        res.jsonp(statusCode, message);
     };
 
     var onSuccess = function (data) {
-        res.send(data);
+        res.jsonp(data);
     };
 
     var query = req.query.q;

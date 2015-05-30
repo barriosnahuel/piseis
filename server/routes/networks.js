@@ -20,7 +20,7 @@ var service = require('../services/networks_service');
 // ======================
 
 router.get('/', function (req, res, next) {
-    res.send(service.findAll());
+    res.jsonp(service.findAll());
 });
 
 module.exports = router;
