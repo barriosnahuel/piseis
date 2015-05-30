@@ -25,10 +25,7 @@ exports.findAll = function (onError, onSuccess, query) {
 };
 
 var parseResponse = function (onError, onSuccess, data) {
-    console.log("Response to parse:");
-
     data = JSON.parse(data.substring(1, data.length - 1));
-    console.dir(data.items);
 
     var response = {};
     response.data = [];
