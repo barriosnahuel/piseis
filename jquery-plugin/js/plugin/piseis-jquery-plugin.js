@@ -29,7 +29,7 @@
         var settings = $.extend({
             //  These are the defaults.
             query: 'NBA',
-            excludeNetworks: ['Facebook', 'Google+']
+            excludeNetworks: []
         }, options);
 
         org.nbempire.js.piseis.news.findByQuery(onError, onSuccess, settings);
