@@ -25,26 +25,19 @@ org.nbempire = org.nbempire || {};
 org.nbempire.js = org.nbempire.js || {};
 org.nbempire.js.piseis = org.nbempire.js.piseis || {};
 
-org.nbempire.js.piseis.socialnetworks = (function () {
+org.nbempire.js.piseis.news = (function () {
 
-    // TODO : Move this!!
-    var API_ENDPOINT = 'http://localhost:3000';
+    var findByQuery = function (onError, onSuccess, options) {
+        console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
 
-    var findNews = function (onError, onSuccess, options) {
-
-        $.ajax({
-            dataType: "jsonp",
-            url: API_ENDPOINT + '/news',
-            data: {
-                q: options.query
-                , excludedNetworks: options.excludeNetworks.join(',')
-            }
-        }).fail(onError)
-            .done(onSuccess);
+        org.nbempire.js.piseis.get(onError, onSuccess, '/news', {
+            q: options.query
+            , excludedNetworks: options.excludeNetworks.join(',')
+        });
     };
 
     return {
-        findNews: findNews
+        findByQuery: findByQuery
     }
 }());
 

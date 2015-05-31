@@ -32,7 +32,7 @@
             excludeNetworks: ['Facebook', 'Google+']
         }, options);
 
-        org.nbempire.js.piseis.find(onError, onSuccess, settings);
+        org.nbempire.js.piseis.news.findByQuery(onError, onSuccess, settings);
 
         return this;
     };

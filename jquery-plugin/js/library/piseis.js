@@ -27,15 +27,18 @@ org.nbempire.js = org.nbempire.js || {};
 
 org.nbempire.js.piseis = (function () {
 
-    var find = function (onError, onSuccess, options) {
-        console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
+    var API_ENDPOINT = 'http://localhost:3000';
 
-        org.nbempire.js.piseis.socialnetworks.findNews(onError, onSuccess, options);
+    var get = function (onError, onSuccess, path, data) {
+        $.ajax({
+            dataType: "jsonp",
+            url: API_ENDPOINT + path,
+            data: data
+        }).fail(onError).done(onSuccess);
     };
 
     return {
-        find: find
+        get: get
     };
-
 }());
 
