@@ -7,6 +7,8 @@ var request = require('request');
 var querystring = require('querystring');
 var moment = require('moment');
 
+var networks = require('./../networks_service');
+
 exports.findAll = function (onError, onSuccess, query) {
     var queryStringParameters = querystring.stringify({
         tags: query
@@ -60,6 +62,8 @@ var parseResponse = function (onError, onSuccess, data) {
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
         result.link = item.link;
+
+        result.source = networks.getFlickrDisplayName();
 
         return result;
     };

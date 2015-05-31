@@ -12,3 +12,7 @@ exports.findAll = function () {
         }
     ]
 };
+
+exports.getFlickrDisplayName = function () {
+    return 'Flickr';
+};
