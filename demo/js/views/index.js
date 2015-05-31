@@ -22,18 +22,27 @@
  */
 $(document).ready(function () {
 
+    $.templates('eachResult', '#eachResultTemplate');
+
+    var $list = $('#results');
+
     $('form').submit(function (event) {
         var onError = function () {
-            console.error("An error occurred while searching in social networks...");
+            var message = 'An error occurred while searching in social networks...';
+
+            $list.append('<li>' + message + '</li>')
         };
 
         var onSuccess = function (data) {
-            console.log("Response parsed. Results: %d", data.data.length);
-            console.dir(data.data[0]);
+            for (var i = 0; i < data.data.length; i++) {
+                $list.append($.render.eachResult(data.data[i]));
+            }
         };
 
         //  ========================================== STOP DECLARING FUNCTIONS
         event.preventDefault();
+
+        $list.empty();
 
         var keyword = $('#keyword').val();
         $('body').piseis(onError, onSuccess, {
