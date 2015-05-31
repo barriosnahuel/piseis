@@ -5,6 +5,7 @@ var API_ENDPOINT = 'http://api.flickr.com/services/feeds/photos_public.gne';
 
 var request = require('request');
 var querystring = require('querystring');
+var moment = require('moment');
 
 exports.findAll = function (onError, onSuccess, query) {
     var queryStringParameters = querystring.stringify({
@@ -55,7 +56,9 @@ var parseResponse = function (onError, onSuccess, data) {
         };
         result.data = data;
 
-        result.date = item.published;
+        var dateMoment = moment(item.published);
+        result.date = dateMoment.toDate();
+        result.dateDisplay = dateMoment.fromNow();
         result.link = item.link;
 
         return result;

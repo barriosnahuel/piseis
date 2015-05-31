@@ -45,6 +45,7 @@
                 }
             },
             "date": "the date that it was pulished!! (Instagram, Twitter, Google+, Flickr)",
+            "dateDisplay": "4 years ago",
             "link": "URL to this tweet! (Instagram, Google+, Flickr)",
             "location": "attached location (Instagram, Twitter)",
             "tags": [
