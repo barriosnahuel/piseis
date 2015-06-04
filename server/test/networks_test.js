@@ -17,7 +17,7 @@ exports.testQuantityOfNetworks = function (test) {
         var data = response.data;
 
         test.ok(data, 'Response must be a true value');
-        test.equal(data.length, 1, 'Response should have 1 items');
+        test.equal(data.length, 2, 'Response should have 1 items');
 
         test.done();
     });
