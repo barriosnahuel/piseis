@@ -6,13 +6,8 @@ var CONSUMER_SECRET = 'p5DOWK5W8PfPSGEjufFR0MI2U2896aDM5mbiYFGLQ';
 var ACCESS_TOKEN = '167430903-S92M9ardfhRFAM4pdAUrNA3TC1mlA91QtzyLgBET';
 var ACCESS_TOKEN_SECRET = '9FUA6zwicRQjK2fjvHMaRHVKiBUzEm7vNU5dAa97cQ9st';
 
-//  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
-var API_ENDPOINT = 'https://api.twitter.com/1.1/search/tweets.json';
-
 var moment = require('moment');
-
 var networks = require('./../networks_service');
-
 var Twit = require('twit')
 
 var twit = new Twit({
@@ -96,8 +91,6 @@ var parseResponse = function (data, next) {
         for (var i = 0; i < data.statuses.length; i++) {
             result.push(parsePublication(data.statuses[i]));
         }
-    } else {
-        // When the request fails for example when tags, tagmode and format is not present.
     }
 
     next(undefined, result);
