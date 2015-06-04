@@ -34,52 +34,67 @@ var parseResponse = function (data, next) {
     var result = [];
 
     var parsePublication = function (item) {
+
+        function parseAuthor(item) {
+            var author = {};
+
+            author.username = item.user.username;
+            author.name = item.user.full_name;
+            author.id = item.user.id;
+
+            author.profile = {};
+            if (author.username) {
+                author.url = 'https://instagram.com/' + author.username;
+            }
+            author.picture = item.user.profile_picture;
+
+            return author;
+        }
+
+        function parsePreview(item) {
+            var preview = {};
+
+            if (item.type === 'image') {
+                preview.thumbnail = item.images.thumbnail;
+            }
+
+            preview.snippet = item.caption.text;
+
+            return preview;
+        }
+
+        function parseData(item) {
+            var data = {};
+            data.content = item.caption.text;
+            data.media = {};
+
+            if (item.type === 'image') {
+                data.media.image = {
+                    low: item.images.low_resolution
+                    , medium: item.images.standard_resolution
+                };
+            } else if (item.type === 'video') {
+                data.media.video = {
+                    low: item.videos.low_resolution
+                    , medium: item.videos.standard_resolution
+                };
+            } else {
+                console.err('Not implemented exception: Unknown media type: %s', item.type);
+            }
+
+            return data;
+        }
+
         var result = {};
-
-        var author = {};
-
-        author.username = item.user.username;
-        author.name = item.user.full_name;
-        author.id = item.user.id;
-        author.profile = {
-            //url:,
-            picture: item.user.profile_picture
-        };
-        result.author = author;
-
-        var preview = {};
-        preview.snippet = item.caption.text;
-        if (item.type === 'image') {
-            preview.thumbnail = item.images.thumbnail;
-        }
-        result.preview = preview;
-
-        var data = {};
-        data.content = item.caption.text;
-        data.media = {};
-        if (item.type === 'image') {
-            data.media.image = {
-                low: item.images.low_resolution
-                , medium: item.images.standard_resolution
-            };
-        } else if (item.type === 'video') {
-            data.media.video = {
-                low: item.videos.low_resolution
-                , medium: item.videos.standard_resolution
-            };
-        } else {
-            console.err('Not implemented exception: Unknown media type: %s', item.type);
-        }
-
-
-        result.data = data;
+        result.author = parseAuthor(item);
+        result.preview = parsePreview(item);
+        result.data = parseData(item);
 
         var dateMoment = moment.unix(item.created_time);
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
 
         result.link = item.link;
-
         result.source = networks.getInstagramDisplayName();
 
         return result;
