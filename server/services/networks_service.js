@@ -16,3 +16,7 @@ exports.findAll = function () {
 exports.getFlickrDisplayName = function () {
     return 'Flickr';
 };
+
+exports.getInstagramDisplayName = function () {
+    return 'Instagram';
+};

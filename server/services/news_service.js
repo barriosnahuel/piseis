@@ -13,6 +13,7 @@ var async = require('async');
  * @type {exports|module.exports}
  */
 var flickr_service = require('./networks/flickr_service');
+var instagram_service = require('./networks/instagram_service');
 
 exports.findAll = function (query, next) {
 
@@ -29,7 +30,7 @@ exports.findAll = function (query, next) {
     };
 
     var instagramTask = function (next) {
-        next(undefined, []);
+        instagram_service.findAll(query, next);
     };
 
     var callback = function (err, results) {

@@ -13,10 +13,9 @@ var moment = require('moment');
 
 var networks = require('./../networks_service');
 
-exports.findAll = function (onError, onSuccess, query) {
+exports.findAll = function (query, next) {
     var queryStringParameters = querystring.stringify({
         client_id: CLIENT_ID
-        , callback: '?'
     });
 
     request({
@@ -24,59 +23,75 @@ exports.findAll = function (onError, onSuccess, query) {
         , json: true
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            parseResponse(onError, onSuccess, body);
+            parseResponse(body, next);
+        } else {
+            next(error);
         }
     });
 };
 
-var parseResponse = function (onError, onSuccess, data) {
-    data = JSON.parse(data.substring(1, data.length - 1));
-
-    var response = {};
-    response.data = [];
+var parseResponse = function (data, next) {
+    var result = [];
 
     var parsePublication = function (item) {
-        function getUserNameFromAuthor(author) {
-            return author.substring(author.indexOf('(') + 1, author.indexOf(')'));
-        }
-
         var result = {};
 
         var author = {};
 
-        author.username = getUserNameFromAuthor(item.author);
-        author.id = item.author_id;
+        author.username = item.user.username;
+        author.name = item.user.full_name;
+        author.id = item.user.id;
+        author.profile = {
+            //url:,
+            picture: item.user.profile_picture
+        };
         result.author = author;
 
         var preview = {};
-        preview.snippet = item.description;
+        preview.snippet = item.caption.text;
+        if (item.type === 'image') {
+            preview.thumbnail = item.images.thumbnail;
+        }
         result.preview = preview;
 
         var data = {};
-        data.media = {
-            image: {
-                medium: item.media.m
-            }
-        };
+        data.content = item.caption.text;
+        data.media = {};
+        if (item.type === 'image') {
+            data.media.image = {
+                low: item.images.low_resolution
+                , medium: item.images.standard_resolution
+            };
+        } else if (item.type === 'video') {
+            data.media.video = {
+                low: item.videos.low_resolution
+                , medium: item.videos.standard_resolution
+            };
+        } else {
+            console.err('Not implemented exception: Unknown media type: %s', item.type);
+        }
+
+
         result.data = data;
 
-        var dateMoment = moment(item.published);
+        var dateMoment = moment.unix(item.created_time);
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
+
         result.link = item.link;
 
-        result.source = networks.getFlickrDisplayName();
+        result.source = networks.getInstagramDisplayName();
 
         return result;
     };
 
     if (data.data) {
         for (var i = 0; i < data.data.length; i++) {
-            response.data.push(parsePublication(data.data[i]));
+            result.push(parsePublication(data.data[i]));
         }
     } else {
         // When the request fails for example when tags, tagmode and format is not present.
     }
 
-    onSuccess(response);
+    next(undefined, result);
 };
