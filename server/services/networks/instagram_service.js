@@ -44,9 +44,9 @@ var parseResponse = function (data, next) {
 
             author.profile = {};
             if (author.username) {
-                author.url = 'https://instagram.com/' + author.username;
+                author.profile.url = 'https://instagram.com/' + author.username;
             }
-            author.picture = item.user.profile_picture;
+            author.profile.picture = item.user.profile_picture;
 
             return author;
         }
@@ -79,7 +79,7 @@ var parseResponse = function (data, next) {
                     , medium: item.videos.standard_resolution
                 };
             } else {
-                console.err('Not implemented exception: Unknown media type: %s', item.type);
+                console.log('Not implemented exception: Unknown media type: %s', item.type);
             }
 
             return data;

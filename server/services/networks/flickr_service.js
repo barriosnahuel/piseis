@@ -52,9 +52,9 @@ var parseResponse = function (responseBody, next) {
 
             author.profile = {};
             if (author.username) {
-                author.url = 'https://flickr.com/photos/' + item.author_id;
+                author.profile.url = 'https://flickr.com/photos/' + item.author_id;
             }
-            //author.picture = item.user.profile_picture;
+            //author.profile.picture = item.user.profile_picture;
 
             return author;
         }
