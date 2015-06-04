@@ -14,14 +14,14 @@ var async = require('async');
  */
 var flickr_service = require('./networks/flickr_service');
 
-exports.findAll = function (onError, onSuccess, query) {
+exports.findAll = function (query, next) {
 
     var sort = function (data) {
         data = data.sort(function (a, b) {
             return b.date - a.date;
         });
 
-        onSuccess({data: data});
+        next(undefined, {data: data});
     };
 
     var flickrTask = function (next) {
