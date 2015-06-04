@@ -27,3 +27,7 @@ exports.getFlickrDisplayName = function () {
 exports.getInstagramDisplayName = function () {
     return 'Instagram';
 };
+
+exports.getTwitterDisplayName = function () {
+    return 'Twitter';
+};

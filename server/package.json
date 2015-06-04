@@ -16,7 +16,8 @@
     "moment": "^2.10.3",
     "morgan": "~1.5.3",
     "request": "^2.55.0",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "twit": "^1.1.20"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

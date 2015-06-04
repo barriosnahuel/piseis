@@ -14,6 +14,7 @@ var async = require('async');
  */
 var flickr_service = require('./networks/flickr_service');
 var instagram_service = require('./networks/instagram_service');
+var twitter_service = require('./networks/twitter_service');
 
 exports.findAll = function (query, next) {
 
@@ -33,6 +34,10 @@ exports.findAll = function (query, next) {
         instagram_service.findAll(query, next);
     };
 
+    var twitterTask = function (next) {
+        twitter_service.findAll(query, next);
+    };
+
     var callback = function (err, results) {
         var joinedResults = [];
         for (var i = 0; i < results.length; i++) {
@@ -47,6 +52,7 @@ exports.findAll = function (query, next) {
     async.parallel(
         [
             flickrTask,
-            instagramTask
+            instagramTask,
+            twitterTask
         ], callback);
 };
