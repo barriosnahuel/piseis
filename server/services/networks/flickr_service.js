@@ -9,7 +9,7 @@ var moment = require('moment');
 
 var networks = require('./../networks_service');
 
-exports.findAll = function (onError, onSuccess, query) {
+exports.findAll = function (query, next) {
     var queryStringParameters = querystring.stringify({
         tags: query
         , format: 'json'
@@ -22,9 +22,9 @@ exports.findAll = function (onError, onSuccess, query) {
         , json: true
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            parseResponse(body, onSuccess);
+            parseResponse(body, next);
         } else {
-            onSuccess(error);
+            next(error);
         }
     });
 };
