@@ -1,7 +1,11 @@
 /**
  * Created by Nahuel Barrios on 27/05/15.
  */
-var API_ENDPOINT = 'http://api.flickr.com/services/feeds/photos_public.gne';
+var CLIENT_ID = 'cb1d643d638842518c90b63c6c3ea7a0';
+
+//  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
+var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
+var API_ENDPOINT_SUFIX = '/media/recent';
 
 var request = require('request');
 var querystring = require('querystring');
@@ -11,32 +15,26 @@ var networks = require('./../networks_service');
 
 exports.findAll = function (onError, onSuccess, query) {
     var queryStringParameters = querystring.stringify({
-        tags: query
-        , format: 'json'
-        , tagmode: 'any'
-        , nojsoncallback: 1
+        client_id: CLIENT_ID
+        , callback: '?'
     });
 
     request({
-        url: API_ENDPOINT + '?' + queryStringParameters
+        url: API_ENDPOINT_PREFFIX + query + API_ENDPOINT_SUFIX + '?' + queryStringParameters
         , json: true
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            parseResponse(body, onSuccess);
-        } else {
-            onSuccess(error);
+            parseResponse(onError, onSuccess, body);
         }
     });
 };
 
-var parseResponse = function (responseBody, next) {
-    var result = [];
+var parseResponse = function (onError, onSuccess, data) {
+    data = JSON.parse(data.substring(1, data.length - 1));
 
-    /**
-     * Parse the Flickr response to generate a piSeis response.
-     * @param item A simple publication in Flickr response format to parse.
-     * @returns {{}}
-     */
+    var response = {};
+    response.data = [];
+
     var parsePublication = function (item) {
         function getUserNameFromAuthor(author) {
             return author.substring(author.indexOf('(') + 1, author.indexOf(')'));
@@ -72,13 +70,13 @@ var parseResponse = function (responseBody, next) {
         return result;
     };
 
-    if (responseBody.items) {
-        for (var i = 0; i < responseBody.items.length; i++) {
-            result.push(parsePublication(responseBody.items[i]));
+    if (data.data) {
+        for (var i = 0; i < data.data.length; i++) {
+            response.data.push(parsePublication(data.data[i]));
         }
     } else {
         // When the request fails for example when tags, tagmode and format is not present.
     }
 
-    next(undefined, result);
+    onSuccess(response);
 };
