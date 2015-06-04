@@ -20,20 +20,20 @@ var service = require('../services/news_service');
 // ======================
 
 router.get('/', function (req, res, next) {
-    var onError = function (statusCode, message) {
-        res.jsonp(statusCode, message);
-    };
 
-    var onSuccess = function (data) {
-        res.jsonp(data);
+    var callback = function (err, result) {
+        if (err) {
+            res.jsonp(err.statusCode, err.message);
+        } else {
+            res.jsonp(result);
+        }
     };
 
     var query = req.query.q;
-
     if (!query) {
-        onError(400, 'Must send a query ("q") parameter.');
+        callback({statusCode: 400, message: 'Must send a query ("q") parameter.'});
     } else {
-        service.findAll(onError, onSuccess, query);
+        service.findAll(query, callback);
     }
 
 });

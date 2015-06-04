@@ -9,12 +9,12 @@ var moment = require('moment');
 
 var networks = require('./../networks_service');
 
-exports.findAll = function (onError, onSuccess, query) {
+exports.findAll = function (query, next) {
     var queryStringParameters = querystring.stringify({
         tags: query
         , format: 'json'
         , tagmode: 'any'
-        , jsoncallback: '?'
+        , nojsoncallback: 1
     });
 
     request({
@@ -22,59 +22,88 @@ exports.findAll = function (onError, onSuccess, query) {
         , json: true
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            parseResponse(onError, onSuccess, body);
+            parseResponse(body, next);
+        } else {
+            next(error);
         }
     });
 };
 
-var parseResponse = function (onError, onSuccess, data) {
-    data = JSON.parse(data.substring(1, data.length - 1));
+var parseResponse = function (responseBody, next) {
+    var result = [];
 
-    var response = {};
-    response.data = [];
-
+    /**
+     * Parse the Flickr response to generate a piSeis response.
+     * @param item A simple publication in Flickr response format to parse.
+     * @returns {{}}
+     */
     var parsePublication = function (item) {
-        function getUserNameFromAuthor(author) {
-            return author.substring(author.indexOf('(') + 1, author.indexOf(')'));
+        function parseAuthor(item) {
+
+            function getUserNameFromAuthor(author) {
+                return author.substring(author.indexOf('(') + 1, author.indexOf(')'));
+            }
+
+            var author = {};
+
+            author.username = getUserNameFromAuthor(item.author);
+            author.id = item.author_id;
+            //author.name = ;
+
+            author.profile = {};
+            if (author.username) {
+                author.url = 'https://flickr.com/photos/' + item.author_id;
+            }
+            //author.picture = item.user.profile_picture;
+
+            return author;
+        }
+
+        function parsePreview(item) {
+            var preview = {};
+
+            //preview.thumbnail = ;
+            preview.snippet = item.description;
+
+            return preview;
+        }
+
+        function parseData(item) {
+            var data = {};
+            //data.content = item.caption.text;
+            data.media = {};
+
+            data.media = {
+                image: {
+                    medium: item.media.m
+                }
+            };
+
+            return data;
         }
 
         var result = {};
-
-        var author = {};
-
-        author.username = getUserNameFromAuthor(item.author);
-        author.id = item.author_id;
-        result.author = author;
-
-        var preview = {};
-        preview.snippet = item.description;
-        result.preview = preview;
-
-        var data = {};
-        data.media = {
-            image: {
-                medium: item.media.m
-            }
-        };
-        result.data = data;
+        result.author = parseAuthor(item);
+        result.preview = parsePreview(item);
+        result.data = parseData(item);
 
         var dateMoment = moment(item.published);
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
-        result.link = item.link;
 
+        result.link = item.link;
         result.source = networks.getFlickrDisplayName();
 
         return result;
     };
 
-    if (data.items) {
-        for (var i = 0; i < data.items.length; i++) {
-            response.data.push(parsePublication(data.items[i]));
+    if (responseBody.items) {
+        for (var i = 0; i < responseBody.items.length; i++) {
+            result.push(parsePublication(responseBody.items[i]));
         }
     } else {
         // When the request fails for example when tags, tagmode and format is not present.
     }
 
-    onSuccess(response);
+    next(undefined, result);
 };

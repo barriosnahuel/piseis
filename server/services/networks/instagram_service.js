@@ -1,0 +1,112 @@
+/**
+ * Created by Nahuel Barrios on 27/05/15.
+ */
+var CLIENT_ID = 'cb1d643d638842518c90b63c6c3ea7a0';
+
+//  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
+var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
+var API_ENDPOINT_SUFIX = '/media/recent';
+
+var request = require('request');
+var querystring = require('querystring');
+var moment = require('moment');
+
+var networks = require('./../networks_service');
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = querystring.stringify({
+        client_id: CLIENT_ID
+    });
+
+    request({
+        url: API_ENDPOINT_PREFFIX + query + API_ENDPOINT_SUFIX + '?' + queryStringParameters
+        , json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            parseResponse(body, next);
+        } else {
+            next(error);
+        }
+    });
+};
+
+var parseResponse = function (data, next) {
+    var result = [];
+
+    var parsePublication = function (item) {
+
+        function parseAuthor(item) {
+            var author = {};
+
+            author.username = item.user.username;
+            author.name = item.user.full_name;
+            author.id = item.user.id;
+
+            author.profile = {};
+            if (author.username) {
+                author.url = 'https://instagram.com/' + author.username;
+            }
+            author.picture = item.user.profile_picture;
+
+            return author;
+        }
+
+        function parsePreview(item) {
+            var preview = {};
+
+            if (item.type === 'image') {
+                preview.thumbnail = item.images.thumbnail;
+            }
+
+            preview.snippet = item.caption.text;
+
+            return preview;
+        }
+
+        function parseData(item) {
+            var data = {};
+            data.content = item.caption.text;
+            data.media = {};
+
+            if (item.type === 'image') {
+                data.media.image = {
+                    low: item.images.low_resolution
+                    , medium: item.images.standard_resolution
+                };
+            } else if (item.type === 'video') {
+                data.media.video = {
+                    low: item.videos.low_resolution
+                    , medium: item.videos.standard_resolution
+                };
+            } else {
+                console.err('Not implemented exception: Unknown media type: %s', item.type);
+            }
+
+            return data;
+        }
+
+        var result = {};
+        result.author = parseAuthor(item);
+        result.preview = parsePreview(item);
+        result.data = parseData(item);
+
+        var dateMoment = moment.unix(item.created_time);
+        result.date = dateMoment.toDate();
+        result.dateDisplay = dateMoment.fromNow();
+
+        result.link = item.link;
+        result.source = networks.getInstagramDisplayName();
+
+        return result;
+    };
+
+    if (data.data) {
+        for (var i = 0; i < data.data.length; i++) {
+            result.push(parsePublication(data.data[i]));
+        }
+    } else {
+        // When the request fails for example when tags, tagmode and format is not present.
+    }
+
+    next(undefined, result);
+};
