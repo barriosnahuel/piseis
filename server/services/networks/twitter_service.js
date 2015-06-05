@@ -86,7 +86,17 @@ var parseResponse = function (data, next) {
         function parseData(item) {
             var data = {};
             data.content = item.text;
-            //data.media = {};
+
+            data.media = {};
+            if (item.entities && item.entities.media && item.entities.media.length > 0) {
+                if ('photo' === item.entities.media[0].type) {
+                    data.media.image = {
+                        medium: item.entities.media[0].media_url
+                    };
+                } else {
+                    // Twitter API only supports photo for now: https://dev.twitter.com/overview/api/entities-in-twitter-objects#media
+                }
+            }
 
             return data;
         }
