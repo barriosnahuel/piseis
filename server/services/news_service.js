@@ -18,12 +18,8 @@ var twitter_service = require('./networks/twitter_service');
 
 exports.findAll = function (query, excludedNetworks, next) {
 
-    var sort = function (data) {
-        data = data.sort(function (a, b) {
-            return b.date - a.date;
-        });
-
-        next(undefined, {data: data});
+    var shouldSearchInNetwork = function (networkId, networks) {
+        return !networks || networks.indexOf(networkId) < 0;
     };
 
     var flickrTask = function (next) {
@@ -48,17 +44,26 @@ exports.findAll = function (query, excludedNetworks, next) {
         sort(joinedResults);
     };
 
+    var sort = function (data) {
+        data = data.sort(function (a, b) {
+            return b.date - a.date;
+        });
+
+        next(undefined, {data: data});
+    };
+
     console.log('Looking for query: %s', query);
 
     var tasks = [];
-
-    if (excludedNetworks.indexOf(twitter_service.getTwitter().id) < 0) {
+    if (shouldSearchInNetwork(twitter_service.getTwitter().id, excludedNetworks)) {
         tasks.push(twitterTask);
     }
-    if (excludedNetworks.indexOf(instagram_service.getInstagram().id) < 0) {
+
+    if (shouldSearchInNetwork(instagram_service.getInstagram().id, excludedNetworks)) {
         tasks.push(instagramTask);
     }
-    if (excludedNetworks.indexOf(flickr_service.getFlickr().id) < 0) {
+
+    if (shouldSearchInNetwork(flickr_service.getFlickr().id, excludedNetworks)) {
         tasks.push(flickrTask);
     }
 
