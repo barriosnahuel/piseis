@@ -44,7 +44,7 @@ var parseResponse = function (data, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = 'https://instagram.com/' + author.username;
+                author.profile.url = networks.getInstagram().url + author.username;
             }
             author.profile.picture = item.user.profile_picture;
 
@@ -95,7 +95,7 @@ var parseResponse = function (data, next) {
         result.dateDisplay = dateMoment.fromNow();
 
         result.link = item.link;
-        result.source = networks.getInstagramDisplayName();
+        result.source = networks.getInstagram().name;
 
         return result;
     };

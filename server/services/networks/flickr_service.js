@@ -52,7 +52,7 @@ var parseResponse = function (responseBody, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = 'https://flickr.com/photos/' + item.author_id;
+                author.profile.url = networks.getFlickr().url + 'photos/' + item.author_id;
             }
             //author.profile.picture = item.user.profile_picture;
 
@@ -92,7 +92,7 @@ var parseResponse = function (responseBody, next) {
         result.dateDisplay = dateMoment.fromNow();
 
         result.link = item.link;
-        result.source = networks.getFlickrDisplayName();
+        result.source = networks.getFlickr().name;
 
         return result;
     };

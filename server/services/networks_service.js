@@ -4,30 +4,40 @@
 
 var RESOURCES_LOCATION = 'http://localhost:3000/public';
 
+var flickr = {
+    id: 'flickr'
+    , name: 'Flickr'
+    , url: 'https://www.flickr.com/'
+    , logo_url: 'https://s.yimg.com/pw/images/goodies/white-small-circle.png'
+};
+
+var instagram = {
+    id: 'instagram'
+    , name: 'Instagram'
+    , url: 'https://www.instagram.com/'
+    , logo_url: RESOURCES_LOCATION + '/images' + '/network_logo_instagram.png'
+};
+
+var twitter = {
+    id: 'twitter'
+    , name: 'Twitter'
+    , url: 'https://www.twitter.com/'
+    , logo_url: 'https://g.twimg.com/Twitter_logo_blue.png'
+};
+
 exports.findAll = function () {
     return [
-        {
-            id: 'flickr'
-            , name: 'Flickr'
-            , url: 'https://www.flickr.com/'
-            , logo_url: 'https://s.yimg.com/pw/images/goodies/white-small-circle.png'
-        }, {
-            id: 'instagram'
-            , name: 'Instagram'
-            , url: 'https://www.instagram.com/'
-            , logo_url: RESOURCES_LOCATION + '/images' + '/network_logo_instagram.png'
-        }
+        flickr
+        , instagram
+        , twitter
     ]
 };
-
-exports.getFlickrDisplayName = function () {
-    return 'Flickr';
+exports.getFlickr = function () {
+    return flickr;
 };
-
-exports.getInstagramDisplayName = function () {
-    return 'Instagram';
+exports.getInstagram = function () {
+    return instagram;
 };
-
-exports.getTwitterDisplayName = function () {
-    return 'Twitter';
+exports.getTwitter = function () {
+    return twitter;
 };

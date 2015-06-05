@@ -45,7 +45,7 @@ var parseResponse = function (data, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = 'http://twitter.com/' + author.username;
+                author.profile.url = networks.getTwitter().url + author.username;
             }
             author.profile.picture = item.user.profile_image_url;
 
@@ -81,8 +81,8 @@ var parseResponse = function (data, next) {
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
 
-        result.link = 'http://twitter.com/' + result.author.username + '/status/' + item.id_str;
-        result.source = networks.getTwitterDisplayName();
+        result.link = networks.getTwitter().url + result.author.username + '/status/' + item.id_str;
+        result.source = networks.getTwitter().name;
 
         return result;
     };
