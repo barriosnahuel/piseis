@@ -83,13 +83,13 @@ var parseResponse = function (data, next) {
 
             if (item.type === 'image') {
                 data.media.image = {
-                    low: item.images.low_resolution
-                    , medium: item.images.standard_resolution
+                    low: item.images.low_resolution.url
+                    , medium: item.images.standard_resolution.url
                 };
             } else if (item.type === 'video') {
                 data.media.video = {
-                    low: item.videos.low_resolution
-                    , medium: item.videos.standard_resolution
+                    low: item.videos.low_resolution.url
+                    , medium: item.videos.standard_resolution.url
                 };
             } else {
                 console.log('Not implemented exception: Unknown media type: %s', item.type);
