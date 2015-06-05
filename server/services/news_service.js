@@ -16,7 +16,7 @@ var flickr_service = require('./networks/flickr_service');
 var instagram_service = require('./networks/instagram_service');
 var twitter_service = require('./networks/twitter_service');
 
-exports.findAll = function (query, next) {
+exports.findAll = function (query, excludedNetworks, next) {
 
     var sort = function (data) {
         data = data.sort(function (a, b) {
@@ -49,10 +49,18 @@ exports.findAll = function (query, next) {
     };
 
     console.log('Looking for query: %s', query);
-    async.parallel(
-        [
-            flickrTask,
-            instagramTask,
-            twitterTask
-        ], callback);
+
+    var tasks = [];
+
+    if (excludedNetworks.indexOf(twitter_service.getTwitter().id) < 0) {
+        tasks.push(twitterTask);
+    }
+    if (excludedNetworks.indexOf(instagram_service.getInstagram().id) < 0) {
+        tasks.push(instagramTask);
+    }
+    if (excludedNetworks.indexOf(flickr_service.getFlickr().id) < 0) {
+        tasks.push(flickrTask);
+    }
+
+    async.parallel(tasks, callback);
 };

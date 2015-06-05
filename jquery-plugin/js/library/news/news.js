@@ -33,7 +33,7 @@ org.nbempire.js.piseis.news = (function () {
         var querystring = {};
         querystring.q = options.query;
         if (options.excludeNetworks.length > 0) {
-            querystring.excludedNetworks = options.excludeNetworks.join(',');
+            querystring.excludedNetworks = options.excludeNetworks;
         }
 
         org.nbempire.js.piseis.get(onError, onSuccess, '/news', querystring);

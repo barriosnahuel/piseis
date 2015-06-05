@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
     if (!query) {
         callback({statusCode: 400, message: 'Must send a query ("q") parameter.'});
     } else {
-        service.findAll(query, callback);
+        service.findAll(query, req.query.excludedNetworks, callback);
     }
 
 });
