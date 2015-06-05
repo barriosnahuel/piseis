@@ -57,8 +57,16 @@ var parseResponse = function (data, next) {
             author.profile = {};
             if (author.username) {
                 author.profile.url = twitter.url + author.username;
+                author.profile.description = item.user.description;
             }
             author.profile.picture = item.user.profile_image_url;
+
+            author.stats = {};
+            author.stats.publications = item.user.statuses_count;
+            author.stats.followers = item.user.followers_count;
+            author.stats.friends = item.user.friends_count;
+
+            author.verified = item.user.verified;
 
             return author;
         }
