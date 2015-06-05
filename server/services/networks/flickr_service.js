@@ -7,7 +7,16 @@ var request = require('request');
 var querystring = require('querystring');
 var moment = require('moment');
 
-var networks = require('./../networks_service');
+var flickr = {
+    id: 'flickr'
+    , name: 'Flickr'
+    , url: 'https://www.flickr.com/'
+    , logo_url: 'https://s.yimg.com/pw/images/goodies/white-small-circle.png'
+};
+
+exports.getFlickr = function () {
+    return flickr;
+};
 
 exports.findAll = function (query, next) {
     var queryStringParameters = querystring.stringify({
@@ -52,7 +61,7 @@ var parseResponse = function (responseBody, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = networks.getFlickr().url + 'photos/' + item.author_id;
+                author.profile.url = flickr.url + 'photos/' + item.author_id;
             }
             //author.profile.picture = item.user.profile_picture;
 
@@ -92,7 +101,7 @@ var parseResponse = function (responseBody, next) {
         result.dateDisplay = dateMoment.fromNow();
 
         result.link = item.link;
-        result.source = networks.getFlickr().name;
+        result.source = flickr.name;
 
         return result;
     };

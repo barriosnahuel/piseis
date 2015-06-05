@@ -17,6 +17,17 @@ var twit = new Twit({
     , access_token_secret: ACCESS_TOKEN_SECRET
 });
 
+var twitter = {
+    id: 'twitter'
+    , name: 'Twitter'
+    , url: 'https://www.twitter.com/'
+    , logo_url: 'https://g.twimg.com/Twitter_logo_blue.png'
+};
+
+exports.getTwitter = function () {
+    return twitter;
+};
+
 exports.findAll = function (query, next) {
     var queryStringParameters = {
         q: query
@@ -45,7 +56,7 @@ var parseResponse = function (data, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = networks.getTwitter().url + author.username;
+                author.profile.url = twitter.url + author.username;
             }
             author.profile.picture = item.user.profile_image_url;
 
@@ -81,8 +92,8 @@ var parseResponse = function (data, next) {
         result.date = dateMoment.toDate();
         result.dateDisplay = dateMoment.fromNow();
 
-        result.link = networks.getTwitter().url + result.author.username + '/status/' + item.id_str;
-        result.source = networks.getTwitter().name;
+        result.link = twitter.url + result.author.username + '/status/' + item.id_str;
+        result.source = twitter.name;
 
         return result;
     };

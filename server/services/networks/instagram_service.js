@@ -3,6 +3,8 @@
  */
 var CLIENT_ID = 'cb1d643d638842518c90b63c6c3ea7a0';
 
+var RESOURCES_LOCATION = 'http://localhost:3000/public';
+
 //  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
 var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
 var API_ENDPOINT_SUFIX = '/media/recent';
@@ -12,6 +14,17 @@ var querystring = require('querystring');
 var moment = require('moment');
 
 var networks = require('./../networks_service');
+
+var instagram = {
+    id: 'instagram'
+    , name: 'Instagram'
+    , url: 'https://www.instagram.com/'
+    , logo_url: RESOURCES_LOCATION + '/images' + '/network_logo_instagram.png'
+};
+
+exports.getInstagram = function () {
+    return instagram;
+};
 
 exports.findAll = function (query, next) {
     var queryStringParameters = querystring.stringify({
@@ -44,7 +57,7 @@ var parseResponse = function (data, next) {
 
             author.profile = {};
             if (author.username) {
-                author.profile.url = networks.getInstagram().url + author.username;
+                author.profile.url = instagram.url + author.username;
             }
             author.profile.picture = item.user.profile_picture;
 
@@ -95,7 +108,7 @@ var parseResponse = function (data, next) {
         result.dateDisplay = dateMoment.fromNow();
 
         result.link = item.link;
-        result.source = networks.getInstagram().name;
+        result.source = instagram.name;
 
         return result;
     };
