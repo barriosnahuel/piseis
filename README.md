@@ -40,6 +40,16 @@ The repo uses [this branching model](http://nvie.com/posts/a-successful-git-bran
 
    // TODO
 
+##Demo project
+There is a demo where you can see both the jQuery plugin and the server in action.
+
+ 1. Run the server
+	> cd server/
+	> npm start
+
+ 2. Open `/demo/index.html` in your favourite browser.
+ 3. Run some queries!
+
 ##License
 
     PiSeis - What people around the world is saying, you've got it.
