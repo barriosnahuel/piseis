@@ -28,12 +28,12 @@ org.nbempire.js.piseis = org.nbempire.js.piseis || {};
 org.nbempire.js.piseis.news = (function () {
 
     var findByQuery = function (onError, onSuccess, options) {
-        console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludeNetworks.length + ' networks)');
+        console.log('Start looking for: ' + options.query + ' (excluding ' + options.excludedNetworks.length + ' networks)');
 
         var querystring = {};
         querystring.q = options.query;
-        if (options.excludeNetworks.length > 0) {
-            querystring.excludedNetworks = options.excludeNetworks;
+        if (options.excludedNetworks.length > 0) {
+            querystring.excludedNetworks = options.excludedNetworks;
         }
 
         org.nbempire.js.piseis.get(onError, onSuccess, '/news', querystring);

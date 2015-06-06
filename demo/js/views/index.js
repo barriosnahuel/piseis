@@ -46,7 +46,8 @@ $(document).ready(function () {
 
         var keyword = $('#keyword').val();
         $('body').piseis(onError, onSuccess, {
-            query: keyword === '' ? undefined : keyword
+            query: keyword === '' ? undefined : keyword,
+            excludedNetworks: []
         });
     });
 
