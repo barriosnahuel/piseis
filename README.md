@@ -6,6 +6,8 @@
 
 [![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis)
 
+[![Throughput Graph](https://graphs.waffle.io/barriosnahuel/piseis/throughput.svg)](https://waffle.io/barriosnahuel/piseis/metrics)
+
 ##Repo usage
 *Do not clone or push to* **master** *branch.*
 
