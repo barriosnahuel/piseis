@@ -15,6 +15,7 @@ var async = require('async');
 var flickr_service = require('./networks/flickr_service');
 var instagram_service = require('./networks/instagram_service');
 var twitter_service = require('./networks/twitter_service');
+var gplus_service = require('./networks/googleplus_service');
 
 exports.findAll = function (query, excludedNetworks, next) {
 
@@ -34,14 +35,22 @@ exports.findAll = function (query, excludedNetworks, next) {
         twitter_service.findAll(query, next);
     };
 
-    var callback = function (err, results) {
-        var joinedResults = [];
-        for (var i = 0; i < results.length; i++) {
-            joinedResults = joinedResults.concat(results[i]);
-        }
+    var gplusTask = function (next) {
+        gplus_service.findAll(query, next);
+    };
 
-        console.log('Total results for query "%s": %d', query, joinedResults.length);
-        sort(joinedResults);
+    var callback = function (err, results) {
+        if (err) {
+            next(err);
+        } else {
+            var joinedResults = [];
+            for (var i = 0; i < results.length; i++) {
+                joinedResults = joinedResults.concat(results[i]);
+            }
+
+            console.log('Total results for query "%s": %d', query, joinedResults.length);
+            sort(joinedResults);
+        }
     };
 
     var sort = function (data) {
@@ -65,6 +74,10 @@ exports.findAll = function (query, excludedNetworks, next) {
 
     if (shouldSearchInNetwork(flickr_service.getFlickr().id, excludedNetworks)) {
         tasks.push(flickrTask);
+    }
+
+    if (shouldSearchInNetwork(gplus_service.getGooglePlus().id, excludedNetworks)) {
+        tasks.push(gplusTask);
     }
 
     async.parallel(tasks, callback);

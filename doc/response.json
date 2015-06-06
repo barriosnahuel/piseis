@@ -42,6 +42,9 @@
                         "low": "public URL to a low quality audio",
                         "medium": "public URL to a medium quality audio",
                         "hight": "public URL to a high quality audio"
+                    },
+                    "article": {
+                        "url": "publlic URL to an article in any blog or web page"
                     }
                 }
             },
