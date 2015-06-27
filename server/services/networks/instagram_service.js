@@ -13,8 +13,6 @@ var request = require('request');
 var querystring = require('querystring');
 var moment = require('moment');
 
-var networks = require('./../networks_service');
-
 var instagram = {
     id: 'instagram'
     , name: 'Instagram'

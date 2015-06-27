@@ -13,7 +13,7 @@ var gplus = {
     id: 'googleplus'
     , name: 'Google+'
     , url: 'https://plus.google.com/'
-    , logo_url: '/images' + '/network_logo_instagram.png'
+    , logo_url: 'https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Short_base_44dp.png'
 };
 
 exports.getGooglePlus = function () {
