@@ -34,6 +34,7 @@ The repo uses [this branching model](http://nvie.com/posts/a-successful-git-bran
 ###PRO tips!
 
 - To run all checks at once simply run:
+
     > npm test
 
 ##jQuery plugin
