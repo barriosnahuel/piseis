@@ -100,6 +100,10 @@ var parseResponse = function (data, next) {
                     data.media.article = {
                         url: item.object.attachments[0].url
                     }
+                } else if (type === 'event') {
+                    data.media.article = {
+                        url: item.object.attachments[0].url
+                    }
                 } else {
                     console.log('Not implemented exception: Unknown media type: %s', type);
                 }
