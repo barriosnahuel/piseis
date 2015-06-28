@@ -1,13 +1,14 @@
 /**
  * Created by Nahuel Barrios on 27/05/15.
  */
-var CLIENT_ID = 'cb1d643d638842518c90b63c6c3ea7a0';
-
-var RESOURCES_LOCATION = 'http://localhost:3000/public';
+var defaultConfig = require('./../../development.json');
+var CLIENT_ID = process.env.NETWORK_INSTAGRAM_CLIENT_ID || defaultConfig.instagram_client_id;
 
 //  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
 var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
 var API_ENDPOINT_SUFIX = '/media/recent';
+
+var path = require('path');
 
 var request = require('request');
 var querystring = require('querystring');
@@ -17,7 +18,7 @@ var instagram = {
     id: 'instagram'
     , name: 'Instagram'
     , url: 'https://www.instagram.com/'
-    , logo_url: RESOURCES_LOCATION + '/images' + '/network_logo_instagram.png'
+    , logo_url: path.resolve('../..', '/public/images/network_logo_instagram.png')
 };
 
 exports.getInstagram = function () {

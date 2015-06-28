@@ -1,7 +1,8 @@
 /**
  * Created by Nahuel Barrios on 05/06/15.
  */
-var API_KEY = 'AIzaSyCNQ1slAxWLz8pg6MCPXJDVdeozgQBYxz8';
+var defaultConfig = require('./../../development.json');
+var API_KEY = process.env.NETWORK_GOOGLE_PLUS_API_KEY || defaultConfig.google_plus_api_key;
 
 var API_ENDPOINT = ' https://www.googleapis.com/plus/v1';
 
