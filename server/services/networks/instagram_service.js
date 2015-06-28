@@ -18,7 +18,7 @@ var instagram = {
     id: 'instagram'
     , name: 'Instagram'
     , url: 'https://www.instagram.com/'
-    , logo_url: path.resolve('../..', '/public/images/network_logo_instagram.png')
+    , logo_url: 'http://piseis.herokuapp.com/images/network_logo_instagram.png'
 };
 
 exports.getInstagram = function () {
