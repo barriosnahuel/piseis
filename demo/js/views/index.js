@@ -22,13 +22,33 @@
  */
 $(document).ready(function () {
 
+    $.templates('eachResult', '#eachResultTemplate');
+
+    var $list = $('#results');
+
     $('form').submit(function (event) {
+        var onError = function () {
+            var message = 'An error occurred while searching in social networks...';
+
+            $list.append('<li>' + message + '</li>')
+        };
+
+        var onSuccess = function (data) {
+            for (var i = 0; i < data.data.length; i++) {
+                $list.append($.render.eachResult(data.data[i]));
+            }
+        };
+
+        //  ========================================== STOP DECLARING FUNCTIONS
         event.preventDefault();
 
+        $list.empty();
+
         var keyword = $('#keyword').val();
-        $('body').piseis({
-                             query: keyword === '' ? undefined : keyword
-                         });
+        $('body').piseis(onError, onSuccess, {
+            query: keyword === '' ? undefined : keyword,
+            excludedNetworks: []
+        });
     });
 
 });

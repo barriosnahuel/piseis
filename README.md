@@ -1,4 +1,4 @@
-#&#120587;seis
+#&#120587;seis [![Build Status](https://travis-ci.org/barriosnahuel/piseis.png)](https://travis-ci.org/barriosnahuel/piseis)
 
 &#120587;Seis: People Says, *what people around the world is saying about something... you've got it.*
 
@@ -6,12 +6,51 @@
 
 [![Stories ready to be worked on](https://badge.waffle.io/barriosnahuel/piseis.png?label=ready&title=Ready)](https://waffle.io/barriosnahuel/piseis) [![Stories in progress](https://badge.waffle.io/barriosnahuel/piseis.png?label=in progress&title=In Progress)](https://waffle.io/barriosnahuel/piseis)
 
+[![Throughput Graph](https://graphs.waffle.io/barriosnahuel/piseis/throughput.svg)](https://waffle.io/barriosnahuel/piseis/metrics)
+
 ##Repo usage
 *Do not clone or push to* **master** *branch.*
 
 Create branch or fork from **develop**, then push or create pull requests (if you don't have access) to that branch.
 
 The repo uses [this branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+
+##Server
+
+###Start
+
+> npm start
+
+###Run checks
+
+####Tests
+
+> grunt nodeunit
+
+####JSHint
+
+> grunt jshint
+
+###PRO tips!
+
+- To run all checks at once simply run:
+
+    > npm test
+
+##jQuery plugin
+
+   // TODO
+
+##Demo project
+There is a demo where you can see both the jQuery plugin and the server in action.
+
+ 1. Run the server
+
+		cd server/
+		npm start
+
+ 2. Open `/demo/index.html` in your favourite browser.
+ 3. Run some queries!
 
 ##License
 

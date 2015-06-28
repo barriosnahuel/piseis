@@ -18,11 +18,27 @@
 
 /**
  * Created by Nahuel Barrios <barrios.nahuel@gmail.com>.
- * Created on 11/30/13, at 3:15 PM.
+ * Created on 11/5/13, at 11:34 PM.
  */
+
 var org = org || {};
 org.nbempire = org.nbempire || {};
 org.nbempire.js = org.nbempire.js || {};
-org.nbempire.js.piseis = org.nbempire.js.piseis || {};
 
-org.nbempire.js.piseis.socialnetworks = {};
+org.nbempire.js.piseis = (function () {
+
+    var API_ENDPOINT = 'http://localhost:3000';
+
+    var get = function (onError, onSuccess, path, data) {
+        $.ajax({
+            dataType: "jsonp",
+            url: API_ENDPOINT + path,
+            data: data
+        }).fail(onError).done(onSuccess);
+    };
+
+    return {
+        get: get
+    };
+}());
+

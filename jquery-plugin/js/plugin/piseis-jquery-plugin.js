@@ -23,16 +23,16 @@
 
 (function ($) {
 
-    $.fn.piseis = function (options) {
+    $.fn.piseis = function (onError, onSuccess, options) {
 
         //  This is the easiest way to have default options.
         var settings = $.extend({
-                                    //  These are the defaults.
-                                    query: 'NBA',
-                                    excludeNetworks: ['Facebook']
-                                }, options);
+            //  These are the defaults.
+            query: 'NBA',
+            excludedNetworks: []
+        }, options);
 
-        org.nbempire.js.piseis.find(settings);
+        org.nbempire.js.piseis.news.findByQuery(onError, onSuccess, settings);
 
         return this;
     };
