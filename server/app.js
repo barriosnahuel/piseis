@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//if(process.env.) {
+//    var rollbar = require('rollbar');
+//}
+
 var routes = require('./routes/index');
 var networks = require('./routes/networks');
 var news = require('./routes/news');
@@ -22,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(rollbar.errorHandler('77903316e7c443008777de91e9052f25'));
 
 //===============
 // Main resources mappings.
@@ -40,7 +45,11 @@ app.use(function (req, res, next) {
 // Error handlers
 
 // Development error handler, it will print stacktrace
-if (app.get('env') === 'development') {
+var environment = app.get('env');
+
+console.log("running server in '%s' mode", environment);
+
+if ('development' === environment) {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
