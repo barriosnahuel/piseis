@@ -1,6 +1,9 @@
-#&#120587;seis [![Build Status](https://travis-ci.org/barriosnahuel/piseis.png)](https://travis-ci.org/barriosnahuel/piseis)
+#&#120587;seis
 
 &#120587;Seis: People Says, *what people around the world is saying about something... you've got it.*
+
+##Status
+[![Build Status](https://travis-ci.org/barriosnahuel/piseis.png)](https://travis-ci.org/barriosnahuel/piseis) [![Codacy Badge](https://www.codacy.com/project/badge/11a82020ea5f4afabe12dad4ec51bd6a)](https://www.codacy.com/app/app38278410/piseis)
 
 ##Issues
 
