@@ -106,10 +106,10 @@ var parseResponse = function (data, next) {
                     data.media.article = {
                         url: item.object.attachments[0].url
                     }
-                //} else if (type === 'album') {
-                //    data.media.article = {
-                //        url: item.object.attachments[0].url
-                //    }
+                } else if (type === 'album') {
+                    data.media.article = {
+                        url: item.object.attachments[0].url
+                    }
                 } else {
                     var msg = '[Google+] Not implemented exception. Unknown media type: ' + type;
                     console.error(msg);
