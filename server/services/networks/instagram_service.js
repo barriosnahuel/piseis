@@ -2,7 +2,7 @@
  * Created by Nahuel Barrios on 27/05/15.
  */
 var defaultConfig = require('./../../development.json');
-var CLIENT_ID = process.env.NETWORK_INSTAGRAM_CLIENT_ID || defaultConfig.instagram_client_id;
+var CLIENT_ID = process.env.NETWORK_INSTAGRAM_CLIENT_ID || defaultConfig.networks.instagram.client_id;
 
 //  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
 var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
