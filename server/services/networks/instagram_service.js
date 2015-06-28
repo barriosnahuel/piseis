@@ -8,8 +8,6 @@ var CLIENT_ID = process.env.NETWORK_INSTAGRAM_CLIENT_ID || defaultConfig.network
 var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
 var API_ENDPOINT_SUFIX = '/media/recent';
 
-var path = require('path');
-
 var request = require('request');
 var querystring = require('querystring');
 var moment = require('moment');
@@ -18,7 +16,7 @@ var instagram = {
     id: 'instagram'
     , name: 'Instagram'
     , url: 'https://www.instagram.com/'
-    , logo_url: 'http://piseis.herokuapp.com/static/images/network_logo_instagram.png'
+    , logo_url: defaultConfig.api_endpoint + '/static/images/network_logo_instagram.png'
 };
 
 exports.getInstagram = function () {
