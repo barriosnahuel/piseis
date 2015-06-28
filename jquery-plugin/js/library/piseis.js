@@ -31,7 +31,7 @@ org.nbempire.js.piseis = (function () {
 
     var get = function (onError, onSuccess, path, data) {
         $.ajax({
-            dataType: "jsonp",
+            dataType: 'jsonp',
             url: API_ENDPOINT + path,
             data: data
         }).fail(onError).done(onSuccess);
