@@ -9,6 +9,7 @@ var API_ENDPOINT = ' https://www.googleapis.com/plus/v1';
 var request = require('request');
 var querystring = require('querystring');
 var moment = require('moment');
+var rollbar = require('rollbar');
 
 var gplus = {
     id: 'googleplus'
@@ -105,8 +106,14 @@ var parseResponse = function (data, next) {
                     data.media.article = {
                         url: item.object.attachments[0].url
                     }
+                }else if (type === 'album') {
+                    data.media.article = {
+                        url: item.object.attachments[0].url
+                    }
                 } else {
-                    console.log('Not implemented exception: Unknown media type: %s', type);
+                    var msg = '[Google+] - Not implemented exception. Unknown media type: ' + type;
+                    console.error(msg);
+                    rollbar.reportMessage(msg);
                 }
             }
 

@@ -65,12 +65,13 @@ if ('development' === environment) {
     });
 
     if (process.env.ROLLBAR_ACCESS_TOKEN) {
-        app.use(require('rollbar').errorHandler(process.env.ROLLBAR_ACCESS_TOKEN));
+        var rollbar = require('rollbar');
+        rollbar.handleUncaughtExceptions(process.env.ROLLBAR_ACCESS_TOKEN);
+        app.use(rollbar.errorHandler());
         console.log('Rollbar configured successfully');
     } else {
-        console.err('Running %s mode without ROLLBAR_ACCESS_TOKEN environment variable', environment);
+        console.error('Running %s mode without ROLLBAR_ACCESS_TOKEN environment variable', environment);
     }
 }
-
 
 module.exports = app;
