@@ -26,7 +26,10 @@ app.use(logger(process.env.REQUEST_LOG_MODE || defaultConfig.request_log_mode ||
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/demo', express.static(path.resolve('../demo')));
+app.use('/jquery-plugin', express.static(path.resolve('../jquery-plugin')));
 
 //===============
 // Main resources mappings.
@@ -37,7 +40,9 @@ app.use('/news', news);
 //===============
 // Error handlers
 
-// Catch 404 and forward to error handler
+/**
+ * Catch 404 and forward to error handler
+ */
 app.use(function (req, res, next) {
     var err = new Error('Wow! Check the URL because we currently does NOT support that resource.');
     err.status = 404;

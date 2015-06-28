@@ -18,3 +18,8 @@ h3 {
 ul li {
     font-size: large;
 }
+
+.ps-comment {
+    font-size: small;
+    color: slategray;
+}

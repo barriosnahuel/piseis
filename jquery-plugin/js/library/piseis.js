@@ -27,7 +27,7 @@ org.nbempire.js = org.nbempire.js || {};
 
 org.nbempire.js.piseis = (function () {
 
-    var API_ENDPOINT = 'http://localhost:3000';
+    var API_ENDPOINT = 'http://piseis.herokuapp.com';
 
     var get = function (onError, onSuccess, path, data) {
         $.ajax({
