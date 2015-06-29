@@ -32,7 +32,7 @@ var news = require('./routes/news');
 var app = express();
 
 var environment = app.get('env');
-console.log("Running server in '%s' mode", environment);
+console.log('Running server in "%s" mode', environment);
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 
 // TODO: Uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger(process.env.REQUEST_LOG_MODE || defaultConfig.request_log_mode || 'dev'));
+app.use(logger(process.env.REQUEST_LOG_MODE || defaultConfig.requestLogMode || 'dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());

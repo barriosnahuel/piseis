@@ -20,7 +20,7 @@
  * Created by Nahuel Barrios on 05/06/15.
  */
 var defaultConfig = require('./../../development.json');
-var API_KEY = process.env.NETWORK_GOOGLE_PLUS_API_KEY || defaultConfig.networks.googleplus.api_key;
+var API_KEY = process.env.NETWORK_GOOGLE_PLUS_API_KEY || defaultConfig.networks.googleplus.apiKey;
 
 var API_ENDPOINT = ' https://www.googleapis.com/plus/v1';
 
@@ -34,30 +34,6 @@ var gplus = {
     , name: 'Google+'
     , url: 'https://plus.google.com/'
     , logo_url: 'https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Short_base_44dp.png'
-};
-
-exports.getGooglePlus = function () {
-    return gplus;
-};
-
-exports.findAll = function (query, next) {
-    var queryStringParameters = querystring.stringify({
-        query: query
-        , key: API_KEY
-        , maxResults: 20
-        , orderBy: 'recent'
-    });
-
-    request({
-        url: API_ENDPOINT + '/activities?' + queryStringParameters
-        , json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            parseResponse(body, next);
-        } else {
-            next({statusCode: body.error.code, message: body.error.message});
-        }
-    });
 };
 
 var parseResponse = function (data, next) {
@@ -119,15 +95,15 @@ var parseResponse = function (data, next) {
                 } else if (type === 'article') {
                     data.media.article = {
                         url: item.object.attachments[0].url
-                    }
+                    };
                 } else if (type === 'event') {
                     data.media.article = {
                         url: item.object.attachments[0].url
-                    }
+                    };
                 } else if (type === 'album') {
                     data.media.article = {
                         url: item.object.attachments[0].url
-                    }
+                    };
                 } else {
                     var msg = '[Google+] Not implemented exception. Unknown media type: ' + type;
                     console.error(msg);
@@ -160,4 +136,28 @@ var parseResponse = function (data, next) {
     }
 
     next(undefined, result);
+};
+
+exports.getGooglePlus = function () {
+    return gplus;
+};
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = querystring.stringify({
+        query: query
+        , key: API_KEY
+        , maxResults: 20
+        , orderBy: 'recent'
+    });
+
+    request({
+        url: API_ENDPOINT + '/activities?' + queryStringParameters
+        , json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            parseResponse(body, next);
+        } else {
+            next({statusCode: body.error.code, message: body.error.message});
+        }
+    });
 };

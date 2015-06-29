@@ -20,10 +20,10 @@
  * Created by Nahuel Barrios on 27/05/15.
  */
 var defaultConfig = require('./../../development.json');
-var CONSUMER_KEY = process.env.NETWORK_TWITTER_CONSUMER_KEY || defaultConfig.networks.twitter.consumer_key;
-var CONSUMER_SECRET = process.env.NETWORK_TWITTER_CONSUMER_SECRET || defaultConfig.networks.twitter.consumer_secret;
-var ACCESS_TOKEN = process.env.NETWORK_TWITTER_ACCESS_TOKEN || defaultConfig.networks.twitter.access_token;
-var ACCESS_TOKEN_SECRET = process.env.NETWORK_TWITTER_ACCESS_TOKEN_SECRET || defaultConfig.networks.twitter.access_token_secret;
+var CONSUMER_KEY = process.env.NETWORK_TWITTER_CONSUMER_KEY || defaultConfig.networks.twitter.consumerKey;
+var CONSUMER_SECRET = process.env.NETWORK_TWITTER_CONSUMER_SECRET || defaultConfig.networks.twitter.consumerSecret;
+var ACCESS_TOKEN = process.env.NETWORK_TWITTER_ACCESS_TOKEN || defaultConfig.networks.twitter.accessToken;
+var ACCESS_TOKEN_SECRET = process.env.NETWORK_TWITTER_ACCESS_TOKEN_SECRET || defaultConfig.networks.twitter.accessTokenSecret;
 
 var moment = require('moment');
 var Twit = require('twit');
@@ -40,24 +40,6 @@ var twitter = {
     , name: 'Twitter'
     , url: 'https://www.twitter.com/'
     , logo_url: 'https://g.twimg.com/Twitter_logo_blue.png'
-};
-
-exports.getTwitter = function () {
-    return twitter;
-};
-
-exports.findAll = function (query, next) {
-    var queryStringParameters = {
-        q: query
-    };
-
-    twit.get('search/tweets', queryStringParameters, function (error, response, body) {
-        if (!error && body.statusCode == 200) {
-            parseResponse(response, next);
-        } else {
-            next(error);
-        }
-    });
 };
 
 var parseResponse = function (data, next) {
@@ -141,4 +123,22 @@ var parseResponse = function (data, next) {
     }
 
     next(undefined, result);
+};
+
+exports.getTwitter = function () {
+    return twitter;
+};
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = {
+        q: query
+    };
+
+    twit.get('search/tweets', queryStringParameters, function (error, response, body) {
+        if (!error && body.statusCode === 200) {
+            parseResponse(response, next);
+        } else {
+            next(error);
+        }
+    });
 };

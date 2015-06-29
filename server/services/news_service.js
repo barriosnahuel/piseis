@@ -30,10 +30,10 @@ var async = require('async');
  * It's the news service.
  * @type {exports|module.exports}
  */
-var flickr_service = require('./networks/flickr_service');
-var instagram_service = require('./networks/instagram_service');
-var twitter_service = require('./networks/twitter_service');
-var gplus_service = require('./networks/googleplus_service');
+var flickrService = require('./networks/flickr_service');
+var instagramService = require('./networks/instagram_service');
+var twitterService = require('./networks/twitter_service');
+var gplusService = require('./networks/googleplus_service');
 
 exports.findAll = function (query, excludedNetworks, next) {
 
@@ -42,19 +42,19 @@ exports.findAll = function (query, excludedNetworks, next) {
     };
 
     var flickrTask = function (next) {
-        flickr_service.findAll(query, next);
+        flickrService.findAll(query, next);
     };
 
     var instagramTask = function (next) {
-        instagram_service.findAll(query, next);
+        instagramService.findAll(query, next);
     };
 
     var twitterTask = function (next) {
-        twitter_service.findAll(query, next);
+        twitterService.findAll(query, next);
     };
 
     var gplusTask = function (next) {
-        gplus_service.findAll(query, next);
+        gplusService.findAll(query, next);
     };
 
     var callback = function (err, results) {
@@ -82,19 +82,19 @@ exports.findAll = function (query, excludedNetworks, next) {
     console.log('Looking for query: %s', query);
 
     var tasks = [];
-    if (shouldSearchInNetwork(twitter_service.getTwitter().id, excludedNetworks)) {
+    if (shouldSearchInNetwork(twitterService.getTwitter().id, excludedNetworks)) {
         tasks.push(twitterTask);
     }
 
-    if (shouldSearchInNetwork(instagram_service.getInstagram().id, excludedNetworks)) {
+    if (shouldSearchInNetwork(instagramService.getInstagram().id, excludedNetworks)) {
         tasks.push(instagramTask);
     }
 
-    if (shouldSearchInNetwork(flickr_service.getFlickr().id, excludedNetworks)) {
+    if (shouldSearchInNetwork(flickrService.getFlickr().id, excludedNetworks)) {
         tasks.push(flickrTask);
     }
 
-    if (shouldSearchInNetwork(gplus_service.getGooglePlus().id, excludedNetworks)) {
+    if (shouldSearchInNetwork(gplusService.getGooglePlus().id, excludedNetworks)) {
         tasks.push(gplusTask);
     }
 

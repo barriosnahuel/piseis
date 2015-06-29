@@ -41,6 +41,6 @@ org.nbempire.js.piseis.news = (function () {
 
     return {
         findByQuery: findByQuery
-    }
+    };
 }());
 
