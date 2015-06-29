@@ -1,9 +1,26 @@
+/*
+ * PiSeis - What people around the world is saying, you've got it.
+ *  Copyright (C) 2013 Nahuel Barrios <barrios.nahuel@gmail.com>.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Created by Nahuel Barrios on 27/05/15.
  */
-var CLIENT_ID = 'cb1d643d638842518c90b63c6c3ea7a0';
-
-var RESOURCES_LOCATION = 'http://localhost:3000/public';
+var defaultConfig = require('./../../development.json');
+var CLIENT_ID = process.env.NETWORK_INSTAGRAM_CLIENT_ID || defaultConfig.networks.instagram.clientId;
 
 //  TODO : Functionality : Replace each meta character (tested with & and it fails) for something specific (or not) for Instagram API.
 var API_ENDPOINT_PREFFIX = 'https://api.instagram.com/v1/tags/';
@@ -17,28 +34,7 @@ var instagram = {
     id: 'instagram'
     , name: 'Instagram'
     , url: 'https://www.instagram.com/'
-    , logo_url: RESOURCES_LOCATION + '/images' + '/network_logo_instagram.png'
-};
-
-exports.getInstagram = function () {
-    return instagram;
-};
-
-exports.findAll = function (query, next) {
-    var queryStringParameters = querystring.stringify({
-        client_id: CLIENT_ID
-    });
-
-    request({
-        url: API_ENDPOINT_PREFFIX + query + API_ENDPOINT_SUFIX + '?' + queryStringParameters
-        , json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            parseResponse(body, next);
-        } else {
-            next(error);
-        }
-    });
+    , logo_url: defaultConfig.apiEndpoint + '/static/images/network_logo_instagram.png'
 };
 
 var parseResponse = function (data, next) {
@@ -120,4 +116,25 @@ var parseResponse = function (data, next) {
     }
 
     next(undefined, result);
+};
+
+exports.getInstagram = function () {
+    return instagram;
+};
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = querystring.stringify({
+        client_id: CLIENT_ID
+    });
+
+    request({
+        url: API_ENDPOINT_PREFFIX + query + API_ENDPOINT_SUFIX + '?' + queryStringParameters
+        , json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            parseResponse(body, next);
+        } else {
+            next(error);
+        }
+    });
 };

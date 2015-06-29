@@ -1,0 +1,18 @@
+{
+    "apiEndpoint": "http://piseis.herokuapp.com",
+    "requestLogMode": "dev",
+    "networks": {
+        "instagram": {
+            "clientId": "cb1d643d638842518c90b63c6c3ea7a0"
+        },
+        "googleplus": {
+            "apiKey": "AIzaSyCNQ1slAxWLz8pg6MCPXJDVdeozgQBYxz8"
+        },
+        "twitter": {
+            "consumerKey": "oy1KRFv0w7vnJgYV9MnzQ",
+            "consumerSecret": "p5DOWK5W8PfPSGEjufFR0MI2U2896aDM5mbiYFGLQ",
+            "accessToken": "167430903-S92M9ardfhRFAM4pdAUrNA3TC1mlA91QtzyLgBET",
+            "accessTokenSecret": "9FUA6zwicRQjK2fjvHMaRHVKiBUzEm7vNU5dAa97cQ9st"
+        }
+    }
+}

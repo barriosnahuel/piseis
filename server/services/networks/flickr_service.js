@@ -1,3 +1,21 @@
+/*
+ * PiSeis - What people around the world is saying, you've got it.
+ *  Copyright (C) 2013 Nahuel Barrios <barrios.nahuel@gmail.com>.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Created by Nahuel Barrios on 27/05/15.
  */
@@ -16,26 +34,6 @@ var flickr = {
 
 exports.getFlickr = function () {
     return flickr;
-};
-
-exports.findAll = function (query, next) {
-    var queryStringParameters = querystring.stringify({
-        tags: query
-        , format: 'json'
-        , tagmode: 'any'
-        , nojsoncallback: 1
-    });
-
-    request({
-        url: API_ENDPOINT + '?' + queryStringParameters
-        , json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            parseResponse(body, next);
-        } else {
-            next(error);
-        }
-    });
 };
 
 var parseResponse = function (responseBody, next) {
@@ -115,4 +113,24 @@ var parseResponse = function (responseBody, next) {
     }
 
     next(undefined, result);
+};
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = querystring.stringify({
+        tags: query
+        , format: 'json'
+        , tagmode: 'any'
+        , nojsoncallback: 1
+    });
+
+    request({
+        url: API_ENDPOINT + '?' + queryStringParameters
+        , json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            parseResponse(body, next);
+        } else {
+            next(error);
+        }
+    });
 };
