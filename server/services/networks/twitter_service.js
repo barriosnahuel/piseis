@@ -1,14 +1,32 @@
+/*
+ * PiSeis - What people around the world is saying, you've got it.
+ *  Copyright (C) 2013 Nahuel Barrios <barrios.nahuel@gmail.com>.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Created by Nahuel Barrios on 27/05/15.
  */
-var CONSUMER_KEY = 'oy1KRFv0w7vnJgYV9MnzQ';
-var CONSUMER_SECRET = 'p5DOWK5W8PfPSGEjufFR0MI2U2896aDM5mbiYFGLQ';
-var ACCESS_TOKEN = '167430903-S92M9ardfhRFAM4pdAUrNA3TC1mlA91QtzyLgBET';
-var ACCESS_TOKEN_SECRET = '9FUA6zwicRQjK2fjvHMaRHVKiBUzEm7vNU5dAa97cQ9st';
+var defaultConfig = require('./../../development.json');
+var CONSUMER_KEY = process.env.NETWORK_TWITTER_CONSUMER_KEY || defaultConfig.networks.twitter.consumer_key;
+var CONSUMER_SECRET = process.env.NETWORK_TWITTER_CONSUMER_SECRET || defaultConfig.networks.twitter.consumer_secret;
+var ACCESS_TOKEN = process.env.NETWORK_TWITTER_ACCESS_TOKEN || defaultConfig.networks.twitter.access_token;
+var ACCESS_TOKEN_SECRET = process.env.NETWORK_TWITTER_ACCESS_TOKEN_SECRET || defaultConfig.networks.twitter.access_token_secret;
 
 var moment = require('moment');
-var networks = require('./../networks_service');
-var Twit = require('twit')
+var Twit = require('twit');
 
 var twit = new Twit({
     consumer_key: CONSUMER_KEY

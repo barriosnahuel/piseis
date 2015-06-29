@@ -16,29 +16,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Created by Nahuel Barrios <barrios.nahuel@gmail.com>.
- * Created on 11/5/13, at 11:34 PM.
- */
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
-var org = org || {};
-org.nbempire = org.nbempire || {};
-org.nbempire.js = org.nbempire.js || {};
+a {
+    color: #0076ff;
+}
 
-org.nbempire.js.piseis = (function () {
+h2 {
+    color: #666666;
+}
 
-    var API_ENDPOINT = 'http://piseis.herokuapp.com';
+h3 {
+    color: #2DA925;
+}
 
-    var get = function (onError, onSuccess, path, data) {
-        $.ajax({
-            dataType: 'jsonp',
-            url: API_ENDPOINT + path,
-            data: data
-        }).fail(onError).done(onSuccess);
-    };
+ul li {
+    font-size: large;
+}
 
-    return {
-        get: get
-    };
-}());
-
+.ps-comment {
+    font-size: small;
+    color: slategray;
+}
