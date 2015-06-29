@@ -16,15 +16,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-    color: #0076ff;
-}
-
 h2 {
     color: #666666;
 }
@@ -35,6 +26,24 @@ h3 {
 
 ul li {
     font-size: large;
+}
+
+header, footer {
+    border: thin #eeeeee;
+}
+
+header {
+    border-bottom-style: solid;
+}
+
+footer {
+    border-top-style: solid;
+    padding-bottom: 10px;
+}
+
+main {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .ps-comment {

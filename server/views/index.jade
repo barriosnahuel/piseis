@@ -1,15 +1,21 @@
 extends layout
 
 block content
-    h1= title
-    p   Welcome to #{title} library home page
+    header
+        h1  &#120587;Seis
+        p   &#120587;Seis: People Says, what people around the world is saying about something... you've got it.
 
-    h2  Available resources
+    main
+        p   Welcome to &#120587;Seis library home page
 
-    h3  GET
-    ul
-        li  / #[span(class='ps-comment') <== Hey, you are here dude!]
-        li  #[a(href='/networks') /networks]
-        li  /news?q={query}&excludedNetworks={networkId}&excludedNetworks={otherNetworkId}
-        hr
-        li  #[a(href='/demo') /demo] #[span(class='ps-comment') <== Try both the jQuery plugin and the REST API from a live example!]
+        h2  Available resources
+
+        h3  GET
+        ul
+            li  / #[span(class='ps-comment') <== Hey, you are here dude!]
+            li  #[a(href='/networks') /networks]
+            li  /news?q={query}&excludedNetworks={networkId}&excludedNetworks={otherNetworkId}
+            li  #[a(href='/demo') /demo] #[span(class='ps-comment') <== Try both the jQuery plugin and the REST API from a live example!]
+    footer
+        h2  About
+        p   If you want to go deeper just take a look to the #[a(href='http://github.com/barriosnahuel/piseis' target='_blank') project home page].
