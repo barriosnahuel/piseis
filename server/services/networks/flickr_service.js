@@ -36,26 +36,6 @@ exports.getFlickr = function () {
     return flickr;
 };
 
-exports.findAll = function (query, next) {
-    var queryStringParameters = querystring.stringify({
-        tags: query
-        , format: 'json'
-        , tagmode: 'any'
-        , nojsoncallback: 1
-    });
-
-    request({
-        url: API_ENDPOINT + '?' + queryStringParameters
-        , json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            parseResponse(body, next);
-        } else {
-            next(error);
-        }
-    });
-};
-
 var parseResponse = function (responseBody, next) {
     var result = [];
 
@@ -133,4 +113,24 @@ var parseResponse = function (responseBody, next) {
     }
 
     next(undefined, result);
+};
+
+exports.findAll = function (query, next) {
+    var queryStringParameters = querystring.stringify({
+        tags: query
+        , format: 'json'
+        , tagmode: 'any'
+        , nojsoncallback: 1
+    });
+
+    request({
+        url: API_ENDPOINT + '?' + queryStringParameters
+        , json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            parseResponse(body, next);
+        } else {
+            next(error);
+        }
+    });
 };

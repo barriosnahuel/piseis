@@ -57,6 +57,14 @@ exports.findAll = function (query, excludedNetworks, next) {
         gplusService.findAll(query, next);
     };
 
+    var sort = function (data) {
+        data = data.sort(function (a, b) {
+            return b.date - a.date;
+        });
+
+        next(undefined, {data: data});
+    };
+
     var callback = function (err, results) {
         if (err) {
             next(err);
@@ -69,14 +77,6 @@ exports.findAll = function (query, excludedNetworks, next) {
             console.log('Total results for query "%s": %d', query, joinedResults.length);
             sort(joinedResults);
         }
-    };
-
-    var sort = function (data) {
-        data = data.sort(function (a, b) {
-            return b.date - a.date;
-        });
-
-        next(undefined, {data: data});
     };
 
     console.log('Looking for query: %s', query);
