@@ -1,6 +1,9 @@
 {
     "apiEndpoint": "http://piseis.herokuapp.com",
     "requestLogMode": "dev",
+    "analytics": {
+        "trackingId": "UA-32410648-8"
+    },
     "networks": {
         "instagram": {
             "clientId": "cb1d643d638842518c90b63c6c3ea7a0"

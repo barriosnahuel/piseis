@@ -22,6 +22,9 @@
 
 var express = require('express');
 var router = express.Router();
+var ua = require('universal-analytics');
+var defaultConfig = require('../development.json');
+var analyticsTracker = ua(defaultConfig.analytics.trackingId);
 
 // ======================
 // Self modules
@@ -52,6 +55,14 @@ router.get('/', function (req, res, next) {
         callback({statusCode: 400, message: 'Must send a query ("q") parameter.'});
     } else {
         service.findAll(query, req.query.excludedNetworks, callback);
+
+        if (express().get('env') === 'production') {
+            analyticsTracker.event('search', 'news', query).send();
+
+            for (var i = 0; req.query.excludedNetworks && i < req.query.excludedNetworks.length; i++) {
+                analyticsTracker.event('search', 'exclude-network', req.query.excludedNetworks[i]).send();
+            }
+        }
     }
 
 });
