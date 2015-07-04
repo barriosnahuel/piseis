@@ -17,29 +17,26 @@
  */
 
 /**
- * Created by Nahuel Barrios <barrios.nahuel@gmail.com>.
- * Created on 11/5/13, at 11:34 PM.
+ * New Relic agent configuration.
+ *
+ * See lib/config.defaults.js in the agent distribution for a more complete
+ * description of configuration variables and their potential values.
  */
-
-var org = org || {};
-org.nbempire = org.nbempire || {};
-org.nbempire.js = org.nbempire.js || {};
-
-org.nbempire.js.piseis = (function () {
-
-    //var API_ENDPOINT = 'http://piseis.herokuapp.com';
-    var API_ENDPOINT = 'http://localhost:3000';
-
-    var get = function (onError, onSuccess, path, data) {
-        $.ajax({
-            dataType: 'jsonp',
-            url: API_ENDPOINT + path,
-            data: data
-        }).fail(onError).done(onSuccess);
-    };
-
-    return {
-        get: get
-    };
-}());
-
+exports.config = {
+    /**
+     * Array of application names.
+     */
+    app_name: ['Pi Seis'],
+    /**
+     * Your New Relic license key.
+     */
+    license_key: '49b18686c14982f38bc861e08aa4fca878f361e4',
+    logging: {
+        /**
+         * Level at which to log. 'trace' is most useful to New Relic when diagnosing
+         * issues with the agent, 'info' and higher will impose the least overhead on
+         * production applications.
+         */
+        level: 'trace'
+    }
+};

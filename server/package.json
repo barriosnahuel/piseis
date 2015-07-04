@@ -15,6 +15,7 @@
     "jade": "~1.9.2",
     "moment": "^2.10.3",
     "morgan": "~1.5.3",
+    "newrelic": "^1.20.2",
     "request": "^2.55.0",
     "rollbar": "^0.5.4",
     "serve-favicon": "~2.2.1",
