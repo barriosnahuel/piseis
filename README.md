@@ -21,6 +21,8 @@
 Create branch or fork from **develop**, then push or create pull requests (if you don't have access) to that branch.
 
 The repo uses [this branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+If you are a command line lover, then you should give a try to [Git Flow](https://github.com/petervanderdoes/gitflow).
+
 
 ##Server
 
